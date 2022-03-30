@@ -2,7 +2,9 @@
 
 <template>
     <div id="NavComponent">
-
+        <input type="button"/>
+        <input type="button"/>
+        <input type="button"/>
     </div>
 </template>
 
@@ -16,5 +18,11 @@ export default class NavBar extends Vue {
 </script>
 
 <style scoped>
-
+    div {
+        height: 10vh;
+        background-color: #006eff;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
 </style>
