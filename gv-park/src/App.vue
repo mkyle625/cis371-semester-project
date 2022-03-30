@@ -1,7 +1,5 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-
     <NavBar/> <!-- Later, add this only to certain views or use v-show -->
   </div>
 </template>

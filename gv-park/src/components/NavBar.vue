@@ -2,17 +2,17 @@
 
 <template>
     <div id="NavComponent">
-        <div class="NavBtn">
+        <div class="NavBtn" @click="btnPress('main')">
             <i class="fa-solid fa-road"></i>
             <span>Parking</span>
         </div>
 
-        <div class="NavBtn">
+        <div class="NavBtn" @click="btnPress('profile')">
             <i class="fa-solid fa-user"></i>
             <span>Profile</span>
         </div>
 
-        <div class="NavBtn">
+        <div class="NavBtn" @click="btnPress('settings')">
             <i class="fa-solid fa-gear"></i>
             <span>Settings</span>
         </div>
@@ -24,7 +24,25 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class NavBar extends Vue {
-  
+  currentPage = "main";
+
+  btnPress(selected: string) {
+      switch(selected) {
+          case "main": {
+              this.currentPage = "main";
+              break;
+          } 
+          case "profile": {
+              this.currentPage = "profile";
+              break;
+          }
+          case "settings": {
+              this.currentPage = "settings";
+              break;
+          }
+      }
+      console.log(`Selected page: ${selected}`);
+  }
 }
 </script>
 
