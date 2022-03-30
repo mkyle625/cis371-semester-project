@@ -1,3 +1,5 @@
+<!-- Navbar, displayed on all pages except for the Login page -->
+
 <template>
     <div id="NavComponent">
 

@@ -1,3 +1,5 @@
+<!-- The mage page with a map of parking lots -->
+
 <template>
     <div id="MainComponent">
 

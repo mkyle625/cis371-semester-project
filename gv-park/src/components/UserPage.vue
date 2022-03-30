@@ -1,3 +1,5 @@
+<!-- User profile page for displaying user-specific information -->
+
 <template>
     <div id="UserComponent">
 

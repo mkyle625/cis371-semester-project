@@ -1,3 +1,5 @@
+<!-- Guest login page ONLY shown on the UserPage and SettingsPage when in guest mode -->
+
 <template>
     <div id="GuestLoginComponent">
 

@@ -1,3 +1,5 @@
+<!-- Settings page for user-specific settings such as parking pass -->
+
 <template>
     <div id="SettingsComponent">
 

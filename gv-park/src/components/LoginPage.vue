@@ -1,3 +1,5 @@
+<!-- The login page, shown when navigating to our app, allows user to login with Google or as a guest -->
+
 <template>
     <div id="LoginComponent">
 
