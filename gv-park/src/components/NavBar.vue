@@ -2,9 +2,20 @@
 
 <template>
     <div id="NavComponent">
-        <input type="button"/>
-        <input type="button"/>
-        <input type="button"/>
+        <div class="NavBtn">
+            <i class="fa-solid fa-road"></i>
+            <span>Parking</span>
+        </div>
+
+        <div class="NavBtn">
+            <i class="fa-solid fa-user"></i>
+            <span>Profile</span>
+        </div>
+
+        <div class="NavBtn">
+            <i class="fa-solid fa-gear"></i>
+            <span>Settings</span>
+        </div>
     </div>
 </template>
 
@@ -18,11 +29,28 @@ export default class NavBar extends Vue {
 </script>
 
 <style scoped>
-    div {
+    #NavComponent {
         height: 10vh;
-        background-color: #006eff;
+        width: 100%;
+        background-color: #0065a4;
         display: flex;
         flex-direction: row;
         justify-content: space-around;
+        align-items: center;
+    }
+
+    .NavBtn {
+        display: flex;
+        flex-direction: column;
+        color: white;
+    }
+
+    .NavBtn > span {
+        font-size: 1.7vh;
+    }
+
+    .fa-solid {
+        font-size: 4vh;
+        margin-bottom: 5px;
     }
 </style>
