@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <NavBar/> <!-- Later, add this only to certain views or use v-show -->
+    <LoginPage/> <!-- Later, add this only to certain views or use v-show -->
   </div>
 </template>
 
