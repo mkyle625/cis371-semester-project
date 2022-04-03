@@ -2,17 +2,17 @@
 
 <template>
     <div id="NavComponent">
-        <div class="NavBtn" @click="btnPress('main')">
+        <div :class="btnMain" @click="btnPress('home')">
             <i class="fa-solid fa-road"></i>
             <span>Parking</span>
         </div>
 
-        <div class="NavBtn" @click="btnPress('profile')">
+        <div :class="btnProfile" @click="btnPress('profile')">
             <i class="fa-solid fa-user"></i>
             <span>Profile</span>
         </div>
 
-        <div class="NavBtn" @click="btnPress('settings')">
+        <div :class="btnSettings" @click="btnPress('settings')">
             <i class="fa-solid fa-gear"></i>
             <span>Settings</span>
         </div>
@@ -21,23 +21,53 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
+import router from "../router";
 
 @Component
 export default class NavBar extends Vue {
-  currentPage = "main";
+  mounted() : void {
+      this.setStyle();
+  }
 
-  btnPress(selected: string) {
-      switch(selected) {
-          case "main": {
-              this.currentPage = "main";
+  btnMain = "NavBtn";
+  btnProfile = "NavBtn";
+  btnSettings = "NavBtn";
+
+  setStyle() : void {
+      switch(this.$route.name) {
+          case "home": {
+              this.btnMain = "NavBtn active";
+              this.btnProfile = "NavBtn";
+              this.btnSettings = "NavBtn";
               break;
           } 
           case "profile": {
-              this.currentPage = "profile";
+              this.btnMain = "NavBtn";
+              this.btnProfile = "NavBtn active";
+              this.btnSettings = "NavBtn";
               break;
           }
           case "settings": {
-              this.currentPage = "settings";
+              this.btnMain = "NavBtn";
+              this.btnProfile = "NavBtn";
+              this.btnSettings = "NavBtn active";
+              break;
+          }
+      }
+  }
+
+  btnPress(selected: string) {
+      switch(selected) {
+          case "home": {
+              this.$router.replace({ name: "home" });
+              break;
+          } 
+          case "profile": {
+              this.$router.replace({ name: "profile" });
+              break;
+          }
+          case "settings": {
+              this.$router.replace({ name: "settings" });
               break;
           }
       }
@@ -48,7 +78,7 @@ export default class NavBar extends Vue {
 
 <style scoped>
     #NavComponent {
-        height: 10vh;
+        height: 8.5vh;
         width: 100%;
         background-color: #0065a4;
         display: flex;
@@ -63,6 +93,10 @@ export default class NavBar extends Vue {
         display: flex;
         flex-direction: column;
         align-items: center;
+        color: #a5a5a5;
+    }
+
+    .active {
         color: white;
     }
 
