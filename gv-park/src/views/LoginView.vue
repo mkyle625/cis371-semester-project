@@ -6,11 +6,11 @@
                 <span>myGVPark</span>
             </div>
 
-            <div id="LoginBtn" @click="btnPress('login')">
+            <div id="LoginBtn" @click="googleLogin">
                 <span class="btn">Login</span>
             </div>
 
-            <div id="GuestLoginBtn" @click="btnPress('guestLogin')">
+            <div id="GuestLoginBtn" @click="guestLogin">
                 <span class="btn">Guest Login</span>
             </div>
         </div>
@@ -19,21 +19,36 @@
 
 <script lang="ts">
     import { Component, Vue } from "vue-property-decorator";
+    import router from "../router";
+    import {
+        Auth,
+        getAuth,
+        getRedirectResult,
+        GoogleAuthProvider,
+        signInWithRedirect,
+        UserCredential,
+    } from "firebase/auth";
+
     @Component
     export default class LoginView extends Vue {
-        btnPress(selected: string) {
-            switch(selected) {
-                case "login": {
-                    // Do something with Firebase here!
+        auth: Auth | null = null;
 
-                    break;
-                } 
-                case "guestLogin": {
-                    // Hide login and continue to app
-                    
-                    break;
-                }
-            }
+        mounted(): void {
+            this.auth = getAuth();
+        }
+
+        googleLogin(): void {
+            const provider = new GoogleAuthProvider();
+            signInWithRedirect(this.auth, provider);
+            getRedirectResult(this.auth)
+            .then((cred: UserCredential)=> {
+                console.log(`User logged in: ${cred.user.displayName}`)
+                this.$router.push({name: "home"});
+            })
+        }
+
+        guestLogin(): void {
+            //
         }
     }
 </script>
