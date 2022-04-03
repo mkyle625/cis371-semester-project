@@ -10,9 +10,8 @@ const routes: Array<RouteConfig> = [
         component: LoginView,
     },
     {
-        path:"/home/:loginMethod",
+        path:"/home/",
         name: "home",
-        props: true,
         component: () =>
             import("../views/HomeView.vue"),
     },

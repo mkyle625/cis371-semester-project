@@ -62,7 +62,7 @@
             signInWithPopup(this.auth!, provider)
             .then((cred: UserCredential) => {
                 console.log(`Login successful: ${cred.user.displayName}`);
-                this.$router.push({ name: "home", params: { loginMethod: "google" } });
+                this.$router.push({ name: "home" });
                 this.loading = false;
             })
             .catch((err: any) => {
@@ -74,7 +74,7 @@
 
         guestLogin(): void {
             this.loading = true;
-            this.$router.push({ name: "home", params: { loginMethod: "guest" } });
+            this.$router.push({ name: "home" });
             this.loading = false;
         }
     }
