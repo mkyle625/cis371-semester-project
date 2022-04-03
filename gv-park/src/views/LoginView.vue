@@ -6,12 +6,12 @@
                 <span>myGVPark</span>
             </div>
 
-            <div class="LoginBtn" @click="btnPress('login')">
-                <span>Login</span>
+            <div id="LoginBtn" @click="btnPress('login')">
+                <span class="btn">Login</span>
             </div>
 
-            <div class="GuestLoginBtn" @click="btnPress('guestLogin')">
-                <span>Guest Login</span>
+            <div id="GuestLoginBtn" @click="btnPress('guestLogin')">
+                <span class="btn">Guest Login</span>
             </div>
         </div>
     </div>
@@ -44,17 +44,20 @@
         width: 100%;
         display: flex;
         flex-direction: column;
-        align-content: center;
-        justify-content: center;
+        align-items: center;
         background-color: #0065a4;
     }
 
-    .LoginBtn {
+    .btn {
+        border-radius: 20px;
+    }
+
+    #LoginBtn {
         color: white;
         margin-bottom: 5vh;
     }
 
-    .LoginBtn > span {
+    #LoginBtn > span {
         font-size: 4vh;
         border: 0.5vh solid white;
         padding: 1.7vh;
@@ -62,7 +65,7 @@
         color: #0065a4;
     }
 
-    .GuestLoginBtn > span {
+    #GuestLoginBtn > span {
         font-size: 2vh;
         border: 0.5vh solid white;
         padding: 1.7vh;
@@ -77,6 +80,7 @@
     .logo {
         display: flex;
         flex-direction: column;
+        align-items: center;
         color: white;
         font-size: 2vh;
         margin-top: 10vh;
