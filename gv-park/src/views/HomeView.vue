@@ -1,13 +1,14 @@
 <template>
     <div>
-        I am the home view
+        <NavBar></NavBar>
     </div>
 </template>
 
 <script lang="ts">
     import { Component, Vue } from "vue-property-decorator";
+    import NavBar from "../components/NavBar.vue";
 
-    @Component
+    @Component({ components: { NavBar } })
     export default class HomeView extends Vue {
 
     }

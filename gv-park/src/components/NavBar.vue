@@ -60,6 +60,7 @@ export default class NavBar extends Vue {
     .NavBtn {
         display: flex;
         flex-direction: column;
+        align-items: center;
         color: white;
     }
 

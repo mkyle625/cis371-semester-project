@@ -13,6 +13,8 @@
             <div id="GuestLoginBtn" @click="guestLogin">
                 <span class="btn">Guest Login</span>
             </div>
+
+            <span id="errorBox" v-show="lError">{{loginError}}</span>
         </div>
     </div>
 </template>
@@ -25,6 +27,7 @@
         getAuth,
         getRedirectResult,
         GoogleAuthProvider,
+        signInWithPopup,
         signInWithRedirect,
         User,
         UserCredential,
@@ -34,17 +37,33 @@
     export default class LoginView extends Vue {
         auth: Auth | null = null;
 
+        loginError = "";
+        lError = false;
+
         mounted(): void {
             this.auth = getAuth();
         }
 
         googleLogin(): void {
             const provider = new GoogleAuthProvider();
-            signInWithRedirect(this.auth!, provider);
-            getRedirectResult(this.auth!)
-            .then((result) => {
-                this.$router.push({name: "home"});
+            // signInWithRedirect(this.auth!, provider);
+            // getRedirectResult(this.auth!)
+            // .then((result) => {
+            //     this.$router.push({name: "home"});
+            // })
+            // .catch((error) => {
+            //     this.loginError = error;
+            //     this.lError = true;
+            // })
+            signInWithPopup(this.auth!, provider)
+            .then((cred: UserCredential) => {
+                console.log(`Login successful: ${cred.user.displayName}`);
+                this.$router.push({ name: "home" });
             })
+            .catch((err: any) => {
+                this.loginError = `Authentication error: ${err}`;
+                this.lError = true;
+            });
         }
 
         guestLogin(): void {
@@ -85,6 +104,12 @@
         border: 0.5vh solid white;
         padding: 1.7vh;
         color: white;
+    }
+
+    #errorBox {
+        margin-top: 5vh;
+        text-align: center;
+        color: rgb(255, 125, 125);
     }
 
     .fa-solid {
