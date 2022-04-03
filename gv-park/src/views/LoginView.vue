@@ -26,6 +26,7 @@
         getRedirectResult,
         GoogleAuthProvider,
         signInWithRedirect,
+        User,
         UserCredential,
     } from "firebase/auth";
 
@@ -39,10 +40,9 @@
 
         googleLogin(): void {
             const provider = new GoogleAuthProvider();
-            signInWithRedirect(this.auth, provider);
-            getRedirectResult(this.auth)
-            .then((cred: UserCredential)=> {
-                console.log(`User logged in: ${cred.user.displayName}`)
+            signInWithRedirect(this.auth!, provider);
+            getRedirectResult(this.auth!)
+            .then((result) => {
                 this.$router.push({name: "home"});
             })
         }
