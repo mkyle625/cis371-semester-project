@@ -14,6 +14,7 @@
                 <span class="btn">Guest Login</span>
             </div>
 
+            <i class="fa-solid fa-car-side fa-bounce" v-show="loading"></i>
             <span id="errorBox" v-show="lError">{{loginError}}</span>
         </div>
     </div>
@@ -37,14 +38,17 @@
     export default class LoginView extends Vue {
         auth: Auth | null = null;
 
-        loginError = "";
-        lError = false;
+        loginError = ""; // Holds error status text
+        lError = false; // Show error status text
+        loading = false; // Show loading indicator
 
         mounted(): void {
             this.auth = getAuth();
         }
 
         googleLogin(): void {
+            this.lError = false;
+            this.loading = true;
             const provider = new GoogleAuthProvider();
             // signInWithRedirect(this.auth!, provider);
             // getRedirectResult(this.auth!)
@@ -58,16 +62,18 @@
             signInWithPopup(this.auth!, provider)
             .then((cred: UserCredential) => {
                 console.log(`Login successful: ${cred.user.displayName}`);
-                this.$router.push({ name: "home" });
+                this.$router.push({ name: "home", params: { loginMethod: "google" } });
+                this.loading = false;
             })
             .catch((err: any) => {
                 this.loginError = `Authentication error: ${err}`;
+                this.loading = false;
                 this.lError = true;
             });
         }
 
         guestLogin(): void {
-            //
+            this.$router.push({ name: "home", params: { loginMethod: "guest" } });
         }
     }
 </script>
@@ -115,6 +121,11 @@
     .fa-solid {
         font-size: 4vh;
         margin-bottom: 5px;
+        color: white;
+    }
+
+    .fa-car-side {
+        margin-top: 6vh;
     }
 
     .logo {
