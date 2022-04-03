@@ -59,15 +59,21 @@ export default class NavBar extends Vue {
   btnPress(selected: string) {
       switch(selected) {
           case "home": {
-              this.$router.replace({ name: "home" });
+              if (this.$route.name != "home") {
+                 this.$router.replace({ name: "home" });
+              }
               break;
           } 
           case "profile": {
-              this.$router.replace({ name: "profile" });
+              if (this.$route.name != "profile") {
+                 this.$router.replace({ name: "profile" });
+              }
               break;
           }
           case "settings": {
-              this.$router.replace({ name: "settings" });
+              if (this.$route.name != "settings") {
+                 this.$router.replace({ name: "settings" });
+              }
               break;
           }
       }
