@@ -73,7 +73,9 @@
         }
 
         guestLogin(): void {
+            this.loading = true;
             this.$router.push({ name: "home", params: { loginMethod: "guest" } });
+            this.loading = false;
         }
     }
 </script>
@@ -99,16 +101,15 @@
 
     #LoginBtn > span {
         font-size: 4vh;
-        border: 0.5vh solid white;
-        padding: 1.7vh;
+        padding: 2vh 10vw;
         background-color: white;
         color: #0065a4;
     }
 
     #GuestLoginBtn > span {
         font-size: 2vh;
-        border: 0.5vh solid white;
-        padding: 1.7vh;
+        border: 1.5px solid white;
+        padding: 1.7vh 6vw;
         color: white;
     }
 

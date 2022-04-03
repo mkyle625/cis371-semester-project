@@ -55,6 +55,8 @@ export default class NavBar extends Vue {
         flex-direction: row;
         justify-content: space-around;
         align-items: center;
+        position: fixed;
+        bottom: 0;
     }
 
     .NavBtn {
