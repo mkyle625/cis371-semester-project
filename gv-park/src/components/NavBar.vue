@@ -61,18 +61,21 @@ export default class NavBar extends Vue {
           case "home": {
               if (this.$route.name != "home") {
                  this.$router.replace({ name: "home" });
+                 this.$store.state.currentPage = "home";
               }
               break;
           } 
           case "profile": {
               if (this.$route.name != "profile") {
                  this.$router.replace({ name: "profile" });
+                 this.$store.state.currentPage = "profile";
               }
               break;
           }
           case "settings": {
               if (this.$route.name != "settings") {
                  this.$router.replace({ name: "settings" });
+                 this.$store.state.currentPage = "settings";
               }
               break;
           }

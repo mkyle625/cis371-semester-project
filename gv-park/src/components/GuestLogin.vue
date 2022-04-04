@@ -4,8 +4,10 @@
     <div>
         <div id="GuestLoginComponent">
             <div class="logo">
-                <i class="fa-solid fa-road"></i>
-                <span>myGVPark</span>
+                <i v-if="this.$store.state.currentPage === 'profile'" class="fa-solid fa-user"></i>
+                <i v-if="this.$store.state.currentPage === 'settings'" class="fa-solid fa-gear"></i>
+                <span v-if="this.$store.state.currentPage === 'profile'">Profile</span>
+                <span v-if="this.$store.state.currentPage === 'settings'">Settings</span>
                 <p>Please login to use this feature</p>
             </div>
 
@@ -61,6 +63,7 @@ export default class GuestLoginPage extends Vue {
             .then((cred: UserCredential) => {
                 console.log(`Login successful: ${cred.user.displayName}`);
                 this.$router.push({ name: "home" });
+                this.$store.state.isGuest = false;
                 this.loading = false;
             })
             .catch((err: any) => {
@@ -79,7 +82,7 @@ export default class GuestLoginPage extends Vue {
         display: flex;
         flex-direction: column;
         align-items: center;
-        background-color: #0065a4;
+        background-color: white;
     }
 
     .btn {
@@ -87,21 +90,14 @@ export default class GuestLoginPage extends Vue {
     }
 
     #LoginBtn {
-        color: white;
+        color: #0065a4;
         margin-bottom: 5vh;
     }
 
     #LoginBtn > span {
         font-size: 4vh;
         padding: 2vh 10vw;
-        background-color: white;
-        color: #0065a4;
-    }
-
-    #GuestLoginBtn > span {
-        font-size: 2vh;
-        border: 1.5px solid white;
-        padding: 1.7vh 6vw;
+        background-color: #0065a4;
         color: white;
     }
 
@@ -114,7 +110,7 @@ export default class GuestLoginPage extends Vue {
     .fa-solid {
         font-size: 4vh;
         margin-bottom: 5px;
-        color: white;
+        color: #0065a4;
     }
 
     .fa-car-side {
@@ -125,7 +121,7 @@ export default class GuestLoginPage extends Vue {
         display: flex;
         flex-direction: column;
         align-items: center;
-        color: white;
+        color: #0065a4;
         font-size: 2vh;
         margin-top: 10vh;
         padding-top: 10vh;
