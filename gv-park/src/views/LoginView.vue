@@ -23,6 +23,7 @@
 <script lang="ts">
     import { Component, Vue } from "vue-property-decorator";
     import router from "../router";
+    import store from "../store";
     import {
         Auth,
         getAuth,
@@ -44,6 +45,7 @@
 
         mounted(): void {
             this.auth = getAuth();
+            console.log("Logged in as guest: " + this.$store.state.isGuest);
         }
 
         googleLogin(): void {
@@ -62,6 +64,7 @@
             signInWithPopup(this.auth!, provider)
             .then((cred: UserCredential) => {
                 console.log(`Login successful: ${cred.user.displayName}`);
+                this.$store.state.isGuest = false;
                 this.$router.push({ name: "home" });
                 this.loading = false;
             })
@@ -75,6 +78,7 @@
         guestLogin(): void {
             this.loading = true;
             this.$router.push({ name: "home" });
+            this.$store.state.isGuest = true;
             this.loading = false;
         }
     }

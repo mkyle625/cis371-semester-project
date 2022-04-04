@@ -1,7 +1,7 @@
-<template v-if="loginType === 'guest'">
+<template>
     <div>
         <NavBar></NavBar>
-        <GuestLogin></GuestLogin>
+        <GuestLogin v-if="this.$store.state.isGuest === true"></GuestLogin>
     </div>
 </template>
 
@@ -12,7 +12,9 @@
 
     @Component({ components: { NavBar, GuestLogin } })
     export default class ProfileView extends Vue {
-        
+        mounted() : void {
+            console.log("Logged in as guest: " + this.$store.state.isGuest);
+        }
     }
 </script>
 
