@@ -53,7 +53,7 @@
     totalUserVotes = 1;
     favoriteLots:Array<any>=[];
     //userBadges:Array<any>=[];
-    userBadges:"";
+    userBadges="";
 
 
    
@@ -109,7 +109,7 @@
     }
 
     async loadFromFirebase():Promise<void>{
-        if(this.$store.state.guestLogin !== 'True'){
+        if(this.$store.state.guestLogin == 'False'){
         const auth = getAuth();
         const userId = auth.currentUser?.uid;
         
@@ -117,17 +117,22 @@
         const doc = await profileCollectionRef.get();
         const collectedData = doc.data();
         console.log(collectedData);
-
+        if(!collectedData){
+            console.log("no matching doc")
+        }
+        else{
         this.parkingPassType = collectedData.parkingPassType;
         this.totalUserVotes = collectedData.TotalVotes;
         this.favoriteLots = collectedData.FavoriteLots;
         this.userBadges = collectedData.Badges
         console.log(this.parkingPassType)
+        }
+        }
     }
     }
 
 
-    }
+    
 
 
 </script>
