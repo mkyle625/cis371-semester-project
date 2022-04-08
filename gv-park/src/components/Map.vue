@@ -1,9 +1,11 @@
 <template>
-  <LMap style="height: 500px" :zoom="15" :center="mapCenter"
-    @click="onMapClicked">
-    <LTileLayer :url="mapUrl" :attribution="mapAttribution"></LTileLayer>
-    <LPolygon :lat-lngs="lotHPolygon.coords" :color="lotHPolygon.color"></LPolygon>
-  </LMap>
+    <div style="height: 100%">
+        <LMap style="height: 91%" :zoom="15" :center="mapCenter"
+        @click="onMapClicked">
+          <LTileLayer :url="mapUrl" :attribution="mapAttribution"></LTileLayer>
+          <LPolygon :lat-lngs="lotHPolygon.coords" :color="lotHPolygon.color"></LPolygon>
+          </LMap>
+    </div>
 </template>
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
