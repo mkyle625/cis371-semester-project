@@ -62,7 +62,7 @@ export default class GuestLoginPage extends Vue {
             signInWithPopup(this.auth!, provider)
             .then((cred: UserCredential) => {
                 console.log(`Login successful: ${cred.user.displayName}`);
-                this.$router.push({ name: "home" });
+
                 this.$store.state.isGuest = false;
                 this.loading = false;
             })

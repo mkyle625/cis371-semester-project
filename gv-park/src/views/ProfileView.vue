@@ -1,22 +1,25 @@
 <template>
   <div>
-      <div class = profile_icon> 
-        <img class="profile_image" :src="userPhotoURL" v-if="userPhotoURL.length > 0" width="64">
-        <div class="profile_data">
-            <h1>{{userInfo}}</h1>
-            <h2>Parking pass:</h2>
-            <p>Student commuter<p>
-            <h2>Total votes</h2>
-            <p>You have voted 14 times</p>
-            <h2>Favorite lots</h2>
-            <p>Allendale Lot C1</p>
-            <h2>Badges:</h2>
-        </div>
-        
-       
+      <GuestLogin v-if="this.$store.state.isGuest === true"></GuestLogin>
+      <div v-else class = profileViewContainer> 
+            <img class="profile_image" :src="userPhotoURL" v-if="userPhotoURL.length > 0" width="64">
+            <div class="profile_data">
+                <h1>{{userInfo}}</h1>
+                <h2>Parking pass:</h2>
+                <p>Student commuter<p>
+                <h2>Total votes</h2>
+                <p>You have voted 14 times</p>
+                <h2>Favorite lots</h2>
+                <p>Allendale Lot C1</p>
+                <h2>Badges:</h2>
+                <div id="LogoutBtn" @click="logoutFirebase">
+                <span class="btn">Logout</span>
+            </div>
+            </div>
+
+         
     </div>
     <NavBar></NavBar>
-    <GuestLogin v-if="this.$store.state.isGuest === true"></GuestLogin>
   </div>
 </template>
 
@@ -32,6 +35,7 @@
         onAuthStateChanged,
         signInWithPopup,
         signInWithRedirect,
+        signOut,
         User,
         UserCredential,
     } from "firebase/auth";
@@ -53,19 +57,30 @@
         }
         });
     }
+
+
+
+    logoutFirebase():void{
+        console.log('clicked')
+        this.auth=getAuth();
+        signOut(this.auth);
+        this.$router.back();
     }
+    }
+
+
 </script>
 
 <style scoped>
 .profile_data {
-        height: 100vh;
-        width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
         background-color: #fff;
     }
-.profile_icon {
+.profileViewContainer {
+height: 100vh;
+width: 100%;
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -83,6 +98,18 @@ padding-top: 10vh;
 .profile_data > h1{
     margin-bottom: 3vh;
 }
+.btn {
+        border-radius: 20px;
+    }
+#LogoutBtn {
+        color: #0065a4;
+        margin-bottom: 1vh;
+        margin-top: 8vh;
+
+    }
+#LogoutBtn > span {
+        font-size: 4vh;
+    }
 </style>
 
  
