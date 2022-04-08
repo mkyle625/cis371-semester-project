@@ -5,16 +5,18 @@
             <img class="profile_image" :src="userPhotoURL" v-if="userPhotoURL.length > 0" width="64">
             <div class="profile_data">
                 <h1>{{userInfo}}</h1>
-                <h2>Parking pass:</h2>
-                <p>Student commuter<p>
+                <h2>Parking pass type</h2>
+                <p>{{parkingPassType}}<p>
                 <h2>Total votes</h2>
-                <p>You have voted 14 times</p>
+                <p>{{totalUserVotes}}</p>
                 <h2>Favorite lots</h2>
-                <p>Allendale Lot C1</p>
+                <p>{{favoriteLots}}</p>
                 <h2>Badges:</h2>
+                <p>{{userBadges}}</p>
                 <div id="LogoutBtn" @click="logoutFirebase">
                 <span class="btn">Logout</span>
             </div>
+            <button id ="testBtn" @click = "saveToFirebase">test save data</button>
             </div>
 
          
@@ -39,14 +41,24 @@
         User,
         UserCredential,
     } from "firebase/auth";
-
+    
+    import {db} from "../myconfig"
     @Component({ components: { NavBar, GuestLogin } })
     export default class ProfileView extends Vue {
         
     userPhotoURL = "";
     auth: Auth | null = null;
     userInfo = "";
+    parkingPassType="";
+    totalUserVotes = 1;
+    favoriteLots:Array<any>=[];
+    //userBadges:Array<any>=[];
+    userBadges:"";
+
+
+   
     mounted() : void {
+        this.loadFromFirebase();
         console.log("Logged in as guest: " + this.$store.state.isGuest);
         this.auth = getAuth();
         onAuthStateChanged(this.auth, (user: User | null) => {
@@ -64,8 +76,57 @@
         console.log('clicked')
         this.auth=getAuth();
         signOut(this.auth);
+        this.$store.state.guestLogin=false;
         this.$router.back();
     }
+
+
+    //this function right now is useless, until we decide if the user can change some types such as parkingPass type which is probable.
+    async saveToFirebase():Promise<void>{
+        if(this.$store.state.guestLogin !== 'True'){
+        const auth = getAuth();
+        const userId = auth.currentUser?.uid;
+        const data = {
+            //actual data to be stored, right now just using dummyData because we dont have a way to change these values yet
+            // parkingPassType: this.parkingPassType,
+            // TotalVotes:this.totalUserVotes,
+            // FavoriteLots:this.favoriteLots,
+            // Badges:this.userBadges,
+
+            //dummy data 
+            parkingPassType: "Student commuter pass",
+            TotalVotes:14,
+            FavoriteLots:"Allendale Lot C1",
+            //will be image later on 
+            Badges:"Super voter badge!",
+        };
+
+        const profileCollectionRef = db.collection("USERS").doc(userId).collection("Profile Info").doc("ProfileView");
+        await profileCollectionRef.set(data).then(() => {
+            console.log("Saved!!");
+        });
+        }
+    }
+
+    async loadFromFirebase():Promise<void>{
+        if(this.$store.state.guestLogin !== 'True'){
+        const auth = getAuth();
+        const userId = auth.currentUser?.uid;
+        
+        const profileCollectionRef = db.collection("USERS").doc(userId).collection("Profile Info").doc("ProfileView");
+        const doc = await profileCollectionRef.get();
+        const collectedData = doc.data();
+        console.log(collectedData);
+
+        this.parkingPassType = collectedData.parkingPassType;
+        this.totalUserVotes = collectedData.TotalVotes;
+        this.favoriteLots = collectedData.FavoriteLots;
+        this.userBadges = collectedData.Badges
+        console.log(this.parkingPassType)
+    }
+    }
+
+
     }
 
 
@@ -85,7 +146,7 @@ display: flex;
 flex-direction: column;
 align-items: center;
 font-size: 2vh;
-padding-top: 10vh;
+padding-top: 2vh;
 
 }
 .profile_data > h2{
@@ -110,6 +171,9 @@ padding-top: 10vh;
 #LogoutBtn > span {
         font-size: 4vh;
     }
+#testBtn {
+    margin-top: 2vh;
+}
 </style>
 
  
