@@ -31,6 +31,7 @@ export default class WorldMap extends Vue {
     // Emit an event to notify the parent element
     console.log(e.latlng);
     this.$emit("map-clicked", e.latlng);
+    console.log(this.$store.state.windowHeight);
   }
 }
 </script>

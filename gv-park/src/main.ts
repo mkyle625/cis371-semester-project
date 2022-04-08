@@ -12,4 +12,17 @@ new Vue({
   store,
   router,
   render: h => h(App),
+  created() {
+    window.addEventListener('resize', this.onResize);
+    this.onResize();
+  },
+  destroyed() {
+    window.removeEventListener('resize', this.onResize);
+  },
+  methods: {
+    onResize() {
+      this.$store.state.windowHeight = window.innerHeight;
+      this.$store.state.windowWidth = window.innerWidth;
+    }
+  }
 }).$mount('#app')

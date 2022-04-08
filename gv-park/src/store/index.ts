@@ -6,6 +6,8 @@ Vue.use(Vuex);
  
 export default new Vuex.Store({
  state: {
+     windowWidth: 0,
+     windowHeight: 0,
      isGuest: true,
      currentPage: "home",
      user: {
