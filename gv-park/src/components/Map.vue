@@ -3,21 +3,26 @@
         <LMap style="height: 91.5%" :zoom="15" :center="mapCenter"
         @click="onMapClicked">
           <LTileLayer :url="mapUrl" :attribution="mapAttribution"></LTileLayer>
-          <LPolygon :lat-lngs="lotBPolygon.coords" :color="lotBPolygon.color"></LPolygon>
-          <LPolygon :lat-lngs="lotC1Polygon.coords" :color="lotC1Polygon.color"></LPolygon>
-          <LPolygon :lat-lngs="lotC2Polygon.coords" :color="lotC2Polygon.color"></LPolygon>
-          <LPolygon :lat-lngs="lotD1Polygon.coords" :color="lotD1Polygon.color"></LPolygon>
-          <LPolygon :lat-lngs="lotD2Polygon.coords" :color="lotD2Polygon.color"></LPolygon>
-          <LPolygon :lat-lngs="lotH1Polygon.coords" :color="lotH1Polygon.color"></LPolygon>
-          <LPolygon :lat-lngs="lotH2Polygon.coords" :color="lotH2Polygon.color"></LPolygon>
-          <LPolygon :lat-lngs="lotG1Polygon.coords" :color="lotG1Polygon.color"></LPolygon>
-          <LPolygon :lat-lngs="lotG2Polygon.coords" :color="lotG2Polygon.color"></LPolygon>
-          <LPolygon :lat-lngs="lotG3Polygon.coords" :color="lotG3Polygon.color"></LPolygon>
-          <LPolygon :lat-lngs="lotK1Polygon.coords" :color="lotK1Polygon.color"></LPolygon>
-          <LPolygon :lat-lngs="lotK2Polygon.coords" :color="lotK2Polygon.color"></LPolygon>
-          <LPolygon :lat-lngs="lotP1Polygon.coords" :color="lotP1Polygon.color"></LPolygon>
-          <LPolygon :lat-lngs="lotP2Polygon.coords" :color="lotP2Polygon.color"></LPolygon>
-          <LPolygon :lat-lngs="lotMPolygon.coords" :color="lotMPolygon.color"></LPolygon>
+          <LPolygon :lat-lngs="lotBPolygon.coords" :color="lotBPolygon.color"></LPolygon>     <!-- Lot B -->
+          <LPolygon :lat-lngs="lotC1Polygon.coords" :color="lotC1Polygon.color"></LPolygon>   <!-- Lot C1 -->
+          <LPolygon :lat-lngs="lotC2Polygon.coords" :color="lotC2Polygon.color"></LPolygon>   <!-- Lot C2 -->
+          <LPolygon :lat-lngs="lotD1Polygon.coords" :color="lotD1Polygon.color"></LPolygon>   <!-- Lot D1 -->
+          <LPolygon :lat-lngs="lotD2Polygon.coords" :color="lotD2Polygon.color"></LPolygon>   <!-- Lot D2 -->
+          <LPolygon :lat-lngs="lotEPolygon.coords" :color="lotEPolygon.color"></LPolygon>     <!-- Lot E -->
+          <LPolygon :lat-lngs="lotFPolygon.coords" :color="lotFPolygon.color"></LPolygon>     <!-- Lot F -->
+          <LPolygon :lat-lngs="lotG1Polygon.coords" :color="lotG1Polygon.color"></LPolygon>   <!-- Lot G1 -->
+          <LPolygon :lat-lngs="lotG2Polygon.coords" :color="lotG2Polygon.color"></LPolygon>   <!-- Lot G2 -->
+          <LPolygon :lat-lngs="lotG3Polygon.coords" :color="lotG3Polygon.color"></LPolygon>   <!-- Lot G3 -->
+          <LPolygon :lat-lngs="lotH1Polygon.coords" :color="lotH1Polygon.color"></LPolygon>   <!-- Lot H1 -->
+          <LPolygon :lat-lngs="lotH2Polygon.coords" :color="lotH2Polygon.color"></LPolygon>   <!-- Lot H2 -->
+          <LPolygon :lat-lngs="lotK1Polygon.coords" :color="lotK1Polygon.color"></LPolygon>   <!-- Lot K1 -->
+          <LPolygon :lat-lngs="lotK2Polygon.coords" :color="lotK2Polygon.color"></LPolygon>   <!-- Lot K2 -->
+          <LPolygon :lat-lngs="lotP1Polygon.coords" :color="lotP1Polygon.color"></LPolygon>   <!-- Lot P1 -->
+          <LPolygon :lat-lngs="lotP2Polygon.coords" :color="lotP2Polygon.color"></LPolygon>   <!-- Lot P2 -->
+          <LPolygon :lat-lngs="lotMPolygon.coords" :color="lotMPolygon.color"></LPolygon>     <!-- Lot M -->
+          <LPolygon :lat-lngs="lotMPPolygon.coords" :color="lotMPPolygon.color"></LPolygon>   <!-- Lot MP -->
+          <LPolygon :lat-lngs="lotNPolygon.coords" :color="lotNPolygon.color"></LPolygon>     <!-- Lot MP -->
+          <LPolygon :lat-lngs="lotOPolygon.coords" :color="lotOPolygon.color"></LPolygon>     <!-- Lot O -->
           </LMap>
     </div>
 </template>
@@ -32,6 +37,7 @@ export default class WorldMap extends Vue {
   mapUrl = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
   mapAttribution =
     "&copy; <a target='_blank' href='http://osm.org/copyright'>OSM</a>";
+
   lotBPolygon = {
     coords: [
       [42.970267905823285, -85.89252412319185],
@@ -112,6 +118,43 @@ export default class WorldMap extends Vue {
     name: "Lot D2"
   }
 
+  lotEPolygon = {
+    coords: [
+      [42.96750770508074, -85.89080214500427],
+      [42.967370259180555, -85.89026570320131],
+      [42.9673152807345, -85.89029788970949],
+      [42.96729564556328, -85.890212059021],
+      [42.96717390736184, -85.89026570320131],
+      [42.967193542571884, -85.89036226272584],
+      [42.96713856396789, -85.89037835597992],
+      [42.967115001693976, -85.89031398296356],
+      [42.96704431481811, -85.89035153388978],
+      [42.967130709877594, -85.89067876338959],
+      [42.96709536645884, -85.89067876338959],
+      [42.96715819918924, -85.89097917079926],
+      [42.967452726757536, -85.89084506034851]
+    ],
+    color: 'blue',
+    name: "Lot E"
+  }
+
+  lotFPolygon = {
+    coords: [
+      [42.96659375657316, -85.8914351463318],
+      [42.96647201698263, -85.89118838310242],
+      [42.96639347518345, -85.8911669254303],
+      [42.96584367978135, -85.89139759540558],
+      [42.96578869997089, -85.89132249355316],
+      [42.96563554166833, -85.89076459407808],
+      [42.965568780237625, -85.89065194129945],
+      [42.965172137302375, -85.89106500148773],
+      [42.96518784598213, -85.89113473892213],
+      [42.9658122627528, -85.89223444461824]
+    ],
+    color: 'blue',
+    name: "Lot F"
+  }
+
   lotG1Polygon = {
     coords: [
       [42.96458730822648, -85.89050710201265],
@@ -155,7 +198,6 @@ export default class WorldMap extends Vue {
     color: 'green',
     name: "Lot G3"
   }
-
 
   lotH1Polygon = {
     coords: [
@@ -230,6 +272,55 @@ export default class WorldMap extends Vue {
     name: "Lot M"
   }
 
+  lotMPPolygon = {
+    coords: [
+      [42.96560443334769, -85.89027106761934],
+      [42.96546305604308, -85.89003503322601],
+      [42.96537665864144, -85.89015305042268],
+      [42.96538451295568, -85.89023351669313],
+      [42.96534524137437, -85.89026570320131],
+      [42.96512532005574, -85.8899760246277],
+      [42.96506248524887, -85.8899599313736],
+      [42.96478365501906, -85.8903193473816],
+      [42.96483470853594, -85.89046955108643],
+      [42.965093902660335, -85.89084506034851],
+      [42.96514888309177, -85.89087724685669]
+    ],
+    color: 'yellow',
+    name: "Lot MP"
+  }
+
+  lotNPolygon = {
+    coords: [
+      [42.960672856680226, -85.88475108146669],
+      [42.96076711559164, -85.884268283844],
+      [42.96039007907952, -85.88425219058992],
+      [42.96038615160371, -85.88466525077821],
+      [42.960445063714786, -85.88465452194215],
+      [42.960445063714786, -85.88473498821259]
+    ],
+    color: 'red',
+    name: "Lot N"
+  }
+
+  lotOPolygon = {
+    coords: [
+      [42.962613420205955, -85.88314175605774],
+      [42.96252701880221, -85.88293790817262],
+      [42.96169048984597, -85.88357627391817],
+      [42.96172190897951, -85.88362991809846],
+      [42.961619796736926, -85.88372111320497],
+      [42.96172190897951, -85.88400542736053],
+      [42.96177296503724, -85.8839786052704],
+      [42.96178474719838, -85.88402688503265],
+      [42.96217748461235, -85.88373184204103],
+      [42.962197121417226, -85.88360846042634],
+      [42.96216962988863, -85.88348507881165]
+    ],
+    color: 'purple',
+    name: "Lot O"
+  }
+
   lotP1Polygon = {
     coords: [
       [42.959790595367124, -85.8891659975052],
@@ -247,7 +338,7 @@ export default class WorldMap extends Vue {
     name: "Lot P1"
   }
 
-    lotP2Polygon = {
+  lotP2Polygon = {
       coords: [
         [42.958831778014215, -85.88844716548921],
         [42.95861576100062, -85.8883184194565],
