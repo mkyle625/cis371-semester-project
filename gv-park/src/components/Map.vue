@@ -15,6 +15,7 @@
           <LPolygon :lat-lngs="lotG3Polygon.coords" :color="lotG3Polygon.color"></LPolygon>   <!-- Lot G3 -->
           <LPolygon :lat-lngs="lotH1Polygon.coords" :color="lotH1Polygon.color"></LPolygon>   <!-- Lot H1 -->
           <LPolygon :lat-lngs="lotH2Polygon.coords" :color="lotH2Polygon.color"></LPolygon>   <!-- Lot H2 -->
+          <LPolygon :lat-lngs="lotJPolygon.coords" :color="lotJPolygon.color"></LPolygon>     <!-- Lot J -->
           <LPolygon :lat-lngs="lotK1Polygon.coords" :color="lotK1Polygon.color"></LPolygon>   <!-- Lot K1 -->
           <LPolygon :lat-lngs="lotK2Polygon.coords" :color="lotK2Polygon.color"></LPolygon>   <!-- Lot K2 -->
           <LPolygon :lat-lngs="lotP1Polygon.coords" :color="lotP1Polygon.color"></LPolygon>   <!-- Lot P1 -->
@@ -229,6 +230,33 @@ export default class WorldMap extends Vue {
     ],
     color: 'green',
     name: "Lot H2"
+  }
+
+  lotJPolygon = {
+    coords: [
+      [42.960260757839805, -85.89359164237976],
+      [42.95981302303971, -85.89304983615877],
+      [42.95958522689089, -85.8933985233307],
+      [42.959286734109014, -85.89304447174074],
+      [42.95948703863563, -85.89266359806062],
+      [42.95865439593277, -85.89166581630708],
+      [42.95842659549445, -85.89200377464296],
+      [42.95810453136681, -85.89164435863496],
+      [42.95832840539027, -85.89127957820894],
+      [42.958139879950956, -85.89105963706972],
+      [42.95799848549243, -85.89125812053682],
+      [42.95793171577407, -85.89124739170076],
+      [42.95792386050834, -85.89177846908571],
+      [42.9579199328751, -85.89357554912569],
+      [42.95796706445753, -85.8935970067978],
+      [42.9579552815653, -85.89374184608461],
+      [42.95877222341476, -85.89376866817474],
+      [42.95883113707113, -85.89369893074036],
+      [42.95902358795556, -85.89392960071565],
+      [42.96008794830303, -85.89384377002716]
+    ],
+    color: 'purple',
+    name: "Lot J"
   }
 
   lotK1Polygon = {
