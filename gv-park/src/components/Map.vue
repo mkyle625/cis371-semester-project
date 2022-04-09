@@ -1,6 +1,6 @@
 <template>
-    <div style="height: 100%">
-        <LMap style="height: 91.5%" :zoom="15" :center="mapCenter"
+    <div style="height: 91.5vh">
+        <LMap style="height: 100%" :zoom="15" :center="mapCenter"
         @click="onMapClicked">
           <LTileLayer :url="mapUrl" :attribution="mapAttribution"></LTileLayer>
             <LPolygon v-for="pLot in lots" :key="`lot-${pLot.name}`" 
@@ -41,3 +41,7 @@ export default class WorldMap extends Vue {
   }
 }
 </script>
+
+<style scoped>
+
+</style>

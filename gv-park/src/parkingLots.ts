@@ -21,7 +21,7 @@ const lots: Array<parkingLot> = [
             [42.96973777944849, -85.89307129383087],
           ],
           color: 'red',
-          name: "Lot B"
+          name: "B"
     },
     {
         coords: [
@@ -36,7 +36,7 @@ const lots: Array<parkingLot> = [
             [42.969062785870946, -85.88904261589052],
           ],
           color: 'red',
-          name: "Lot C1"
+          name: "C1"
     },
     {
         coords: [
@@ -49,7 +49,7 @@ const lots: Array<parkingLot> = [
             [42.968878278364656, -85.88936984539033]
           ],
           color: 'red',
-          name: "Lot C2"
+          name: "C2"
     },
     {
         coords: [
@@ -61,7 +61,7 @@ const lots: Array<parkingLot> = [
             [42.967641246904456, -85.88748157024385]
           ],
           color: 'blue',
-          name: "Lot D1"
+          name: "D1"
     },
     {
         coords: [
@@ -79,7 +79,7 @@ const lots: Array<parkingLot> = [
             [42.96959295458745, -85.8877068758011]
           ],
           color: 'blue',
-          name: "Lot D2"
+          name: "D2"
     },
     {
         coords: [
@@ -98,7 +98,7 @@ const lots: Array<parkingLot> = [
             [42.967452726757536, -85.89084506034851]
           ],
           color: 'blue',
-          name: "Lot E"
+          name: "E"
     },
     {
         coords: [
@@ -114,7 +114,7 @@ const lots: Array<parkingLot> = [
             [42.9658122627528, -85.89223444461824]
           ],
           color: 'blue',
-          name: "Lot F"
+          name: "F"
     },
     {
         coords: [
@@ -125,7 +125,7 @@ const lots: Array<parkingLot> = [
             [42.96489755685795, -85.89108645915985]
           ],
           color: 'blue',
-          name: "Lot G1" 
+          name: "G1" 
     },
     {
         coords: [
@@ -138,7 +138,7 @@ const lots: Array<parkingLot> = [
             [42.96415587504681, -85.89240610599518]
           ],
           color: 'red',
-          name: "Lot G2"
+          name: "G2"
     },
     {
         coords: [
@@ -155,7 +155,7 @@ const lots: Array<parkingLot> = [
             [42.965412577510335, -85.89200913906099]
           ],
           color: 'red',
-          name: "Lot G3"
+          name: "G3"
     },
     {
         coords: [
@@ -175,7 +175,7 @@ const lots: Array<parkingLot> = [
             [42.96282106047182, -85.8927708864212]
           ],
           color: 'red',
-          name: "Lot H1"
+          name: "H1"
     },
     {
         coords: [
@@ -185,7 +185,7 @@ const lots: Array<parkingLot> = [
             [42.96103767636653, -85.89180271016234],
           ],
           color: 'red',
-          name: "Lot H2"
+          name: "H2"
     },
     {
         coords: [
@@ -211,7 +211,7 @@ const lots: Array<parkingLot> = [
             [42.96008794830303, -85.89384377002716]
           ],
           color: 'purple',
-          name: "Lot J"
+          name: "J"
     },
     {
         coords: [
@@ -221,7 +221,7 @@ const lots: Array<parkingLot> = [
             [42.960556014150676, -85.89008867740633]
           ],
           color: 'red',
-          name: "Lot K1"
+          name: "K1"
     },
     {
         coords: [
@@ -233,7 +233,7 @@ const lots: Array<parkingLot> = [
             [42.96041447082416, -85.89031398296356]
           ],
           color: 'yellow',
-          name: "Lot K2"
+          name: "K2"
     },
     {
         coords: [
@@ -249,7 +249,7 @@ const lots: Array<parkingLot> = [
             [42.96046188110854, -85.8864998817444]
           ],
           color: 'blue',
-          name: "Lot M"
+          name: "M"
     },
     {
         coords: [
@@ -266,7 +266,7 @@ const lots: Array<parkingLot> = [
             [42.96514888309177, -85.89087724685669]
           ],
           color: 'green',
-          name: "Lot MP"
+          name: "MP"
     },
     {
         coords: [
@@ -278,7 +278,7 @@ const lots: Array<parkingLot> = [
             [42.960445063714786, -85.88473498821259]
           ],
           color: 'blue',
-          name: "Lot N"
+          name: "N"
     },
     {
         coords: [
@@ -295,7 +295,7 @@ const lots: Array<parkingLot> = [
             [42.96216962988863, -85.88348507881165]
           ],
           color: 'orange',
-          name: "Lot O"
+          name: "O"
     },
     {
         coords: [
@@ -311,7 +311,7 @@ const lots: Array<parkingLot> = [
             [42.959377916098525, -85.8898311853409]
           ],
           color: 'yellow',
-          name: "Lot P1"
+          name: "P1"
     },
     {
         coords: [
@@ -327,7 +327,7 @@ const lots: Array<parkingLot> = [
             [42.95859612305268, -85.88904798030855]
           ],
           color: 'yellow',
-          name: "Lot P2"
+          name: "P2"
     }
 ]
 
