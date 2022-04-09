@@ -1,7 +1,6 @@
 type parkingLot = {
-    coords: Array<number[]>;
+    coords: Array<[number, number]>;
     color: string;
     name: string;
 };
-
-export { parkingLot }
+export { parkingLot };
