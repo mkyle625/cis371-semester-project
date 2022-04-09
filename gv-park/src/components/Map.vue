@@ -1,6 +1,6 @@
 <template>
     <div style="height: 91.5vh">
-        <LMap style="height: 100%" :zoom="15" :center="mapCenter"
+        <LMap style="height: 100%" :zoom="16" :center="mapCenter"
         @click="onMapClicked">
           <LTileLayer :url="mapUrl" :attribution="mapAttribution"></LTileLayer>
             <LPolygon v-for="pLot in lots" :key="`lot-${pLot.name}`" 
@@ -19,7 +19,7 @@ import { lots } from "../parkingLots";
 
 @Component({ components: { LMap, LTileLayer, LMarker, LPolygon } })
 export default class WorldMap extends Vue {
-  mapCenter = [42.963, -85.891];
+  mapCenter = [42.9642403706251, -85.88916939152114];
   mapUrl = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
   mapAttribution =
     "&copy; <a target='_blank' href='http://osm.org/copyright'>OSM</a>";
@@ -31,7 +31,7 @@ export default class WorldMap extends Vue {
 
   onMapClicked(e: any): void {
     // Emit an event to notify the parent element
-    // console.log(`[${e.latlng.lat}, ${e.latlng.lng}]`);
+     console.log(`[${e.latlng.lat}, ${e.latlng.lng}]`);
     this.$emit("map-clicked", e.latlng);
     //console.log(this.$store.state.windowHeight);
   }
