@@ -1,3 +1,8 @@
+/*
+    ParkingLots.ts
+    Stores all of the parking lots
+*/
+
 import { parkingLot } from "./datatypes";
 
 const lots: Array<parkingLot> = [
@@ -15,7 +20,7 @@ const lots: Array<parkingLot> = [
             [42.96924691762007, -85.89230418205261],
             [42.96973777944849, -85.89307129383087],
           ],
-          color: 'green',
+          color: 'red',
           name: "Lot B"
     },
     {
@@ -30,7 +35,7 @@ const lots: Array<parkingLot> = [
             [42.9690195897132, -85.88906943798067],
             [42.969062785870946, -85.88904261589052],
           ],
-          color: 'green',
+          color: 'red',
           name: "Lot C1"
     },
     {
@@ -43,7 +48,7 @@ const lots: Array<parkingLot> = [
             [42.9686780044132, -85.88989555835725],
             [42.968878278364656, -85.88936984539033]
           ],
-          color: 'green',
+          color: 'red',
           name: "Lot C2"
     },
     {
@@ -55,7 +60,7 @@ const lots: Array<parkingLot> = [
             [42.96762553885122, -85.88678956031801],
             [42.967641246904456, -85.88748157024385]
           ],
-          color: 'orange',
+          color: 'blue',
           name: "Lot D1"
     },
     {
@@ -73,7 +78,7 @@ const lots: Array<parkingLot> = [
             [42.96977297857356, -85.88792681694032],
             [42.96959295458745, -85.8877068758011]
           ],
-          color: 'orange',
+          color: 'blue',
           name: "Lot D2"
     },
     {
@@ -132,7 +137,7 @@ const lots: Array<parkingLot> = [
             [42.964093039249725, -85.89291036128999],
             [42.96415587504681, -85.89240610599518]
           ],
-          color: 'green',
+          color: 'red',
           name: "Lot G2"
     },
     {
@@ -149,7 +154,7 @@ const lots: Array<parkingLot> = [
             [42.96513767604011, -85.8923363685608],
             [42.965412577510335, -85.89200913906099]
           ],
-          color: 'green',
+          color: 'red',
           name: "Lot G3"
     },
     {
@@ -169,7 +174,7 @@ const lots: Array<parkingLot> = [
             [42.96279737865808, -85.89300692081453],
             [42.96282106047182, -85.8927708864212]
           ],
-          color: 'green',
+          color: 'red',
           name: "Lot H1"
     },
     {
@@ -179,7 +184,7 @@ const lots: Array<parkingLot> = [
             [42.96029383361218, -85.8909097487193],
             [42.96103767636653, -85.89180271016234],
           ],
-          color: 'green',
+          color: 'red',
           name: "Lot H2"
     },
     {
@@ -215,7 +220,7 @@ const lots: Array<parkingLot> = [
             [42.9599747465688, -85.88937520980836],
             [42.960556014150676, -85.89008867740633]
           ],
-          color: 'blue',
+          color: 'red',
           name: "Lot K1"
     },
     {
@@ -227,7 +232,7 @@ const lots: Array<parkingLot> = [
             [42.960359486161565, -85.89026033878328],
             [42.96041447082416, -85.89031398296356]
           ],
-          color: 'blue',
+          color: 'yellow',
           name: "Lot K2"
     },
     {
@@ -243,7 +248,7 @@ const lots: Array<parkingLot> = [
             [42.9605639952729, -85.88612437248231],
             [42.96046188110854, -85.8864998817444]
           ],
-          color: 'red',
+          color: 'blue',
           name: "Lot M"
     },
     {
@@ -260,7 +265,7 @@ const lots: Array<parkingLot> = [
             [42.965093902660335, -85.89084506034851],
             [42.96514888309177, -85.89087724685669]
           ],
-          color: 'yellow',
+          color: 'green',
           name: "Lot MP"
     },
     {
@@ -272,7 +277,7 @@ const lots: Array<parkingLot> = [
             [42.960445063714786, -85.88465452194215],
             [42.960445063714786, -85.88473498821259]
           ],
-          color: 'red',
+          color: 'blue',
           name: "Lot N"
     },
     {
@@ -289,7 +294,7 @@ const lots: Array<parkingLot> = [
             [42.962197121417226, -85.88360846042634],
             [42.96216962988863, -85.88348507881165]
           ],
-          color: 'purple',
+          color: 'orange',
           name: "Lot O"
     },
     {
@@ -305,7 +310,7 @@ const lots: Array<parkingLot> = [
             [42.95884769587213, -85.88922500610353],
             [42.959377916098525, -85.8898311853409]
           ],
-          color: 'blue',
+          color: 'yellow',
           name: "Lot P1"
     },
     {
@@ -321,8 +326,8 @@ const lots: Array<parkingLot> = [
             [42.95801090932801, -85.88882803916931],
             [42.95859612305268, -85.88904798030855]
           ],
-          color: 'blue',
-          name: "Lot P"
+          color: 'yellow',
+          name: "Lot P2"
     }
 ]
 

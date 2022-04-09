@@ -3,7 +3,9 @@
         <LMap style="height: 91.5%" :zoom="15" :center="mapCenter"
         @click="onMapClicked">
           <LTileLayer :url="mapUrl" :attribution="mapAttribution"></LTileLayer>
-            <LPolygon v-for="pLot in lots" :key="`lot-${pLot.name}`" :lat-lngs="pLot.coords" :color="pLot.color"></LPolygon>
+            <LPolygon v-for="pLot in lots" :key="`lot-${pLot.name}`" 
+              :lat-lngs="pLot.coords" :color="pLot.color" :fillColor="pLot.color"
+              :weight="lineWeight" :opacity="lineOpacity" :fillOpacity="fillOpacity"/>
           </LMap>
     </div>
 </template>
@@ -21,7 +23,10 @@ export default class WorldMap extends Vue {
   mapAttribution =
     "&copy; <a target='_blank' href='http://osm.org/copyright'>OSM</a>";
 
-  lots = lots;
+  lots = lots; // Pull lots in from parking lots import
+  lineWeight = 2; // Polygons - outline weight
+  lineOpacity = 0.5; // Polygons - outline opacity
+  fillOpacity = 0.15; // Polygons - fill opacity
 
   onMapClicked(e: any): void {
     // Emit an event to notify the parent element
