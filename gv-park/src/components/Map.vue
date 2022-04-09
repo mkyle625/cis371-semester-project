@@ -5,7 +5,8 @@
           <LTileLayer :url="mapUrl" :attribution="mapAttribution"></LTileLayer>
             <LPolygon v-for="pLot in lots" :key="`lot-${pLot.name}`" 
               :lat-lngs="pLot.coords" :color="pLot.color" :fillColor="pLot.color"
-              :weight="lineWeight" :opacity="lineOpacity" :fillOpacity="fillOpacity"/>
+              :weight="lineWeight" :opacity="lineOpacity" :fillOpacity="fillOpacity"
+              @click="clickLot(pLot.name)"/>
           </LMap>
     </div>
 </template>
@@ -30,9 +31,13 @@ export default class WorldMap extends Vue {
 
   onMapClicked(e: any): void {
     // Emit an event to notify the parent element
-    console.log(`[${e.latlng.lat}, ${e.latlng.lng}]`);
+    // console.log(`[${e.latlng.lat}, ${e.latlng.lng}]`);
     this.$emit("map-clicked", e.latlng);
     //console.log(this.$store.state.windowHeight);
+  }
+
+  clickLot(name: string): void {
+    console.log(`Selected: ${name}`);
   }
 }
 </script>
