@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="overlay">
         <div id="header">
             <span>Lot {{lot}}</span>
             <i class="fa-solid fa-circle-xmark" @click="closeOverlay"></i>
@@ -21,10 +21,10 @@
 </script>
 
 <style scoped>
-    div {
+    #overlay {
         z-index: 900;
         width: 90vw;
-        height: 20vh;
+        height: 30vh;
         background-color: white;
         position: absolute;
         bottom: 12vh;
@@ -34,6 +34,7 @@
     }
 
     #header {
+        display: flex;
         flex-direction: row;
         justify-content: space-between;
     }
