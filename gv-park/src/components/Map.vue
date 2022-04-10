@@ -31,13 +31,14 @@ export default class WorldMap extends Vue {
 
   onMapClicked(e: any): void {
     // Emit an event to notify the parent element
-     console.log(`[${e.latlng.lat}, ${e.latlng.lng}]`);
+    // console.log(`[${e.latlng.lat}, ${e.latlng.lng}]`);
     this.$emit("map-clicked", e.latlng);
     //console.log(this.$store.state.windowHeight);
   }
 
   clickLot(name: string): void {
     console.log(`Selected: ${name}`);
+    this.$emit("lot-tapped", name);
   }
 }
 </script>
