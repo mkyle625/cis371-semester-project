@@ -96,6 +96,7 @@ export default class NavBar extends Vue {
         align-items: center;
         position: fixed;
         bottom: 0;
+        z-index: 1000;
     }
 
     .NavBtn {
