@@ -1,5 +1,5 @@
 <template>
-    <div style="height: 91.5vh">
+    <div style="max-height: 91.5vh">
         <LMap style="height: 100%" :zoom="16" :center="mapCenter"
         @click="onMapClicked">
           <LTileLayer :url="mapUrl" :attribution="mapAttribution"></LTileLayer>
@@ -44,5 +44,7 @@ export default class WorldMap extends Vue {
 </script>
 
 <style scoped>
-
+  div {
+    flex-grow: 1;
+  }
 </style>

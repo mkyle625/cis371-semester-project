@@ -1,7 +1,7 @@
 <template>
     <div style="height: 100%">
-        <LotOverlay/>
         <Map @lot-tapped="selectLot"/>
+        <LotOverlay/>
         <NavBar/>
     </div>
 </template>
@@ -21,5 +21,8 @@
 </script>
 
 <style scoped>
-
+    div {
+        display: flex;
+        flex-direction: column;
+    }
 </style>

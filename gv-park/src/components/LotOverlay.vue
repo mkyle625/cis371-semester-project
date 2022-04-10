@@ -15,12 +15,13 @@
 
 <style scoped>
     div {
+        z-index: 900;
+        width: 90vw;
+        height: 20vh;
         background-color: white;
-        border-radius: 20px;
-        height: 5vh;
-        width: 80vw;
         position: absolute;
-        bottom: 10vh;
-        z-index: 0;
+        bottom: 12vh;
+        align-self: center;
+        border-radius: 20px;
     }
 </style>
