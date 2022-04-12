@@ -36,9 +36,7 @@ import { Auth, getAuth, signOut } from "firebase/auth";
 export default class SettingsView extends Vue {
   auth: Auth | null = null;
   mounted(): void {
-    var e = document.getElementById("parkingPassType");
-    var value = e.options[e.selectedIndex].value;
-    var text = e.options[e.selectedIndex].text;
+   
     console.log("Logged in as guest: " + this.$store.state.isGuest);
   }
 
