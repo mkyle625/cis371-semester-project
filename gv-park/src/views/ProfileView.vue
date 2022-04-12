@@ -13,9 +13,6 @@
                 <p>{{favoriteLots}}</p>
                 <h2>Badges:</h2>
                 <p>{{userBadges}}</p>
-                <div id="LogoutBtn" @click="logoutFirebase">
-                <span class="btn">Logout</span>
-            </div>
             <button id ="testBtn" @click = "saveToFirebase">test save data</button>
             </div>
 
@@ -72,14 +69,7 @@
 
 
 
-    logoutFirebase():void{
-        console.log('clicked')
-        this.auth=getAuth();
-        signOut(this.auth);
-        this.$store.state.guestLogin=false;
-        this.$router.back();
-    }
-
+ 
 
     //this function right now is useless, until we decide if the user can change some types such as parkingPass type which is probable.
     async saveToFirebase():Promise<void>{
