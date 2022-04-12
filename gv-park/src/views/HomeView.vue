@@ -2,6 +2,7 @@
     <div style="height: 100%">
         <Map @lot-tapped="selectLot"/>
         <LotOverlay :lot="lot" v-show="showOverlay" @closeOverlay="closeOverlay"/>
+        <TutorialOverlay/>
         <NavBar/>
     </div>
 </template>
@@ -11,8 +12,9 @@
     import NavBar from "../components/NavBar.vue";
     import Map from "../components/Map.vue";
     import LotOverlay from "../components/LotOverlay.vue";
+    import TutorialOverlay from "../components/TutorialOverlay.vue";
 
-    @Component({ components: { NavBar, Map, LotOverlay } })
+    @Component({ components: { NavBar, Map, LotOverlay, TutorialOverlay } })
     export default class HomeView extends Vue {
         lot?: string;
         showOverlay = false;
