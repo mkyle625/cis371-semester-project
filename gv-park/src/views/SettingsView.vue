@@ -1,11 +1,11 @@
 <template>
   <div>
-      <div class = settingsViewContainer>
-        <div class="LogoutBtn">
-        <button @click="logoutFirebase">Logout</button>
+      <NavBar></NavBar>
+      <GuestLogin v-if="this.$store.state.isGuest === true"></GuestLogin>
+      <div v-else class = settingsViewContainer>
+        <div class="LogoutBtn" @click="logoutFirebase">
+        <span>Logout</span>
         </div>
-        <NavBar></NavBar>
-        <GuestLogin v-if="this.$store.state.isGuest === true"></GuestLogin>
       </div>
   </div>
 </template>
