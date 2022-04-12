@@ -50,7 +50,7 @@
     auth: Auth | null = null;
     userInfo = "";
     parkingPassType="";
-    totalUserVotes = 1;
+    totalUserVotes = 0;
     favoriteLots:Array<any>=[];
     //userBadges:Array<any>=[];
     userBadges="";
@@ -58,7 +58,7 @@
 
    
     mounted() : void {
-        this.loadFromFirebase();
+        this.loadFromFirebase()
         console.log("Logged in as guest: " + this.$store.state.isGuest);
         this.auth = getAuth();
         onAuthStateChanged(this.auth, (user: User | null) => {
@@ -109,7 +109,9 @@
     }
 
     async loadFromFirebase():Promise<void>{
-        if(this.$store.state.guestLogin == 'False'){
+        console.log("HERE:")
+        console.log(this.$store.state.guestLogin);
+        if(this.$store.state.guestLogin !== "true"){
         const auth = getAuth();
         const userId = auth.currentUser?.uid;
         
@@ -125,7 +127,7 @@
         this.totalUserVotes = collectedData.TotalVotes;
         this.favoriteLots = collectedData.FavoriteLots;
         this.userBadges = collectedData.Badges
-        console.log(this.parkingPassType)
+        console.log(collectedData)
         }
         }
     }
@@ -145,14 +147,13 @@
         background-color: #fff;
     }
 .profileViewContainer {
-height: 100vh;
-width: 100%;
-display: flex;
-flex-direction: column;
-align-items: center;
-font-size: 2vh;
-padding-top: 2vh;
-
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 2vh;
+    padding-top: 2vh;
 }
 .profile_data > h2{
     margin-bottom: 1vh;
