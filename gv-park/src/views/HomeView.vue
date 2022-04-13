@@ -2,7 +2,7 @@
     <div style="height: 100%">
         <Map @lot-tapped="selectLot"/>
         <LotOverlay :lot="lot" v-show="showOverlay" @closeOverlay="closeOverlay"/>
-        <TutorialOverlay/>
+        <TutorialOverlay v-show="showTutorial" @nextButton="nextButton"/>
         <NavBar/>
     </div>
 </template>
@@ -18,12 +18,17 @@
     export default class HomeView extends Vue {
         lot?: string;
         showOverlay = false;
+        showTutorial = true;
 
         selectLot(name: string): void {
             this.lot = name;
             // Change variable twice to force an update
             this.showOverlay = false;
             this.showOverlay = true;
+        }
+
+        nextButton() {
+            this.showTutorial = false;
         }
 
         closeOverlay(): void {

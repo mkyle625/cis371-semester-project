@@ -65,7 +65,7 @@
         userFavoriteLot = "";
 
         nextButton() {
-            this.$router.push({ name: "profile" });
+            this.$emit("nextButton", this.userParkingPass, this.userFavoriteLot);
         }
     }
 </script>
@@ -103,6 +103,23 @@
         margin-top: 1.3vh;
         font-size: 2em;
         color: gray;
+    }
+
+    .btn {
+        border-radius: 20px;
+    }
+
+    #NextBtn {
+        color: #0065a4;
+        margin-top: 5vh;
+        margin-bottom: 2vh;
+    }
+
+    #NextBtn > span {
+        font-size: 2vh;
+        padding: 2vh 5vw;
+        background-color: #0065a4;
+        color: white;
     }
 
     .logo {
