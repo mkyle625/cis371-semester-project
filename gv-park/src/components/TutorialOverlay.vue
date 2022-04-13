@@ -7,6 +7,51 @@
         <div id="welcome">
             <h1>Welcome</h1>
             <p>We notice that you haven't used this app before.</p>
+            <p>Please answer the following questions to finish setting up your account.</p>
+            <form>
+                <label for="parkingPassType">Parking pass type:</label><br />
+                <select id="parkingPassType" v-model="userParkingPass">
+                    <option disabled=true>Please choose one:</option>
+                    <option value="Student Commuter Pass">(Red) Student Commuter pass</option>
+                    <option value="Lot J Remote Commuter Pass">(Purple) Lot J Remote Commuter</option>
+                    <option value="Allendale Student Resident Pass">(Yellow) Allendale Student Resident</option>
+                    <option value="Calder Student Resident Pass">(Orange) Calder Student Resident</option>
+                    <option value="Faculty">(Blue) Faculty</option>
+                    <option value="Pew Student Resident Pass">Pew Student Resident</option>
+                    <option value="Remote Resident Seward Ramp Pass">Remote Resident Seward Ramp</option>
+                </select>
+            </form>
+            <form>
+                <label for="favoriteLot">Favorite lot:</label><br />
+                <select id="favoriteLot" v-model="userFavoriteLot">
+                    <option disabled=true>Please choose one:</option>
+                    <option value="(Red) B">(Red) B</option>
+                    <option value="(Red) C1">(Red) C1</option>
+                    <option value="(Red) C2">(Red) C2</option>
+                    <option value="(Blue) D1">(Blue) D1</option>
+                    <option value="(Blue) D2">(Blue) D2</option>
+                    <option value="(Blue) E">(Blue) E</option>
+                    <option value="(Blue) F">(Blue) F</option>
+                    <option value="(Blue) G1">(Blue) G1</option>
+                    <option value="(Blue) F">(Blue) F</option>
+                    <option value="(Red) G2">(Red) G2</option>
+                    <option value="(Red) G3">(Red) G3</option>
+                    <option value="(Red) H1">(Red) H1</option>
+                    <option value="(Red) H2">(Red) H2</option>
+                    <option value="(Purple) J">(Purple) J</option>
+                    <option value="(Red) K1">(Red) K1</option>
+                    <option value="(Yellow) K2">(Yellow) K2</option>
+                    <option value="(Blue) M">(Blue) M</option>
+                    <option value="(Green) MP">(Green) MP</option>
+                    <option value="(Blue) N">(Blue) N</option>
+                    <option value="(Orange) O">(Orange) O</option>
+                    <option value="(Yellow) P1">(Yellow) P1</option>
+                    <option value="(Yellow) P2">(Yellow) P2</option>
+                </select>
+            </form>
+            <div id="NextBtn" @click="nextButton">
+                <span class="btn">Next</span>
+            </div>
         </div>
     </div>
 </template>
@@ -16,7 +61,12 @@
 
     @Component
     export default class TutorialOverlay extends Vue {
-        
+        userParkingPass = "";
+        userFavoriteLot = "";
+
+        nextButton() {
+            this.$router.push({ name: "profile" });
+        }
     }
 </script>
 
@@ -38,6 +88,7 @@
         flex-direction: column;
         justify-content: center;
         align-content: center;
+        align-items: center;
     }
     
     #welcome > span {
