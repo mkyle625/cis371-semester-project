@@ -2,7 +2,7 @@
     <div style="height: 100%">
         <Map @lot-tapped="selectLot"/>
         <LotOverlay :lot="lot" v-show="showOverlay" @closeOverlay="closeOverlay"/>
-        <TutorialOverlay v-if="this.$store.state.isGuest === false && this.$store.state.isFirstTime === true" v-show="showTutorial" @nextButton="nextButton"/>
+        <FirstTimeSetup v-if="this.$store.state.isGuest === false && this.$store.state.isFirstTime === true" v-show="showTutorial" @nextButton="nextButton"/>
         <NavBar/>
     </div>
 </template>
@@ -12,11 +12,11 @@
     import NavBar from "../components/NavBar.vue";
     import Map from "../components/Map.vue";
     import LotOverlay from "../components/LotOverlay.vue";
-    import TutorialOverlay from "../components/TutorialOverlay.vue";
+    import FirstTimeSetup from "../components/FirstTimeSetup.vue";
     import { Auth, getAuth, onAuthStateChanged, User } from "firebase/auth";
     import { db } from "../myconfig";
 
-    @Component({ components: { NavBar, Map, LotOverlay, TutorialOverlay } })
+    @Component({ components: { NavBar, Map, LotOverlay, FirstTimeSetup } })
     export default class HomeView extends Vue {
         lot?: string;
         showOverlay = false;
@@ -24,7 +24,13 @@
 
         mounted() {
             this.loadFireBaseData();
-            this.showTutorial = this.$store.state.isFirstTime;
+            // ONLY FOR TESTING
+            // Set isFirstTime to true
+            this.$store.state.isFirstTime = true;
+            if (this.$store.state.isFirstTime === true) {
+                this.showTutorial = true;
+            }
+            this.showTutorial = true;
         }
 
         selectLot(name: string): void {
@@ -50,13 +56,16 @@
                 const profileCollectionRef = db.collection("USERS").doc(userID).collection("Profile Info").doc("ProfileView");
                 const document = await profileCollectionRef.get();
                 const data = document.data();
-                this.$store.state.isFirstTime = data?.isFirstTime;
-                if (data?.isFirstTime === true) {
-                    this.showTutorial = true;
-                }
-                else {
-                    this.showTutorial = false;
-                }
+                // ONLY FOR TESTING
+                // Manually set to true
+                this.$store.state.isFirstTime = true;//data?.isFirstTime;
+                this.showTutorial = true;
+                // if (data?.isFirstTime === true) {
+                //     this.showTutorial = true;
+                // }
+                // else {
+                //     this.showTutorial = false;
+                // }
             }
         }
     }

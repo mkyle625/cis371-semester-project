@@ -60,7 +60,7 @@
     import { Vue, Component, Prop } from "vue-property-decorator";
 
     @Component
-    export default class TutorialOverlay extends Vue {
+    export default class Tutorial extends Vue {
         userParkingPass = "";
         userFavoriteLot = "";
 
