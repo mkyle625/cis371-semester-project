@@ -9,6 +9,7 @@ export default new Vuex.Store({
      windowWidth: 0,
      windowHeight: 0,
      isGuest: true,
+     isFirstTime: true,
      currentPage: "home",
      user: {
             id: "",
