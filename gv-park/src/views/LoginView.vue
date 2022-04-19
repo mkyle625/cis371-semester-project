@@ -34,6 +34,9 @@
         User,
         UserCredential,
     } from "firebase/auth";
+import { DocumentReference, setDoc } from "@firebase/firestore";
+import { db } from "../myconfig";
+import { doc } from "firebase/firestore";
 
     @Component
     export default class LoginView extends Vue {
@@ -64,6 +67,8 @@
             signInWithPopup(this.auth!, provider)
             .then((cred: UserCredential) => {
                 console.log(`Login successful: ${cred.user.displayName}`);
+                const userInfo:DocumentReference = doc(db, "USERS", cred.user.uid);
+                setDoc(userInfo, { name: cred.user.displayName }, {merge: true});
                 this.$store.state.isGuest = false;
                 this.$router.push({ name: "home" });
                 this.loading = false;
