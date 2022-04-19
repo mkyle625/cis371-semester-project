@@ -34,7 +34,7 @@
         User,
         UserCredential,
     } from "firebase/auth";
-import { DocumentReference, setDoc } from "@firebase/firestore";
+import { DocumentReference, DocumentSnapshot, getDoc, setDoc } from "@firebase/firestore";
 import { db } from "../myconfig";
 import { doc } from "firebase/firestore";
 
@@ -68,7 +68,16 @@ import { doc } from "firebase/firestore";
             .then((cred: UserCredential) => {
                 console.log(`Login successful: ${cred.user.displayName}`);
                 const userInfo:DocumentReference = doc(db, "USERS", cred.user.uid);
-                setDoc(userInfo, { name: cred.user.displayName, lastLogin: this.getDate() }, {merge: true});
+                setDoc(userInfo, { name: cred.user.displayName, lastLogin: this.getDate(), firstLogin: null }, {merge: true});
+                // getDoc(userInfo).then((tempDoc: DocumentSnapshot) => {
+                //     const data = tempDoc.data()!;
+                //     if (data.firstLogin == null) {
+                //         this.$store.state.isFirstTime = true;
+                //     }
+                //     else {
+                //         this.$store.state.isFirstTime = data.firstLogin;
+                //     }
+                // });
                 this.$store.state.isGuest = false;
                 this.$router.push({ name: "home" });
                 this.loading = false;
