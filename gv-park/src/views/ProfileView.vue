@@ -48,7 +48,7 @@
     userInfo = "";
     parkingPassType="";
     totalUserVotes = 0;
-    favoriteLots:Array<any>=[];
+    favoriteLots:Array<string>=[];
     //userBadges:Array<any>=[];
     userBadges="";
 
@@ -117,7 +117,6 @@
         this.totalUserVotes = collectedData.TotalVotes;
         this.favoriteLots = collectedData.FavoriteLots;
         this.userBadges = collectedData.Badges
-        console.log(collectedData)
         }
         }
     }

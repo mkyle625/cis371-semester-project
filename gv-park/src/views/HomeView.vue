@@ -58,7 +58,7 @@
                 const data = document.data();
                 // ONLY FOR TESTING
                 // Manually set to true
-                this.$store.state.isFirstTime = true;//data?.isFirstTime;
+                this.$store.state.isFirstTime = false;//data?.isFirstTime;
                 this.showTutorial = true;
                 // if (data?.isFirstTime === true) {
                 //     this.showTutorial = true;
