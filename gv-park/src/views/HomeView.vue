@@ -4,6 +4,7 @@
         <LotOverlay :lot="lot" v-show="showOverlay" @closeOverlay="closeOverlay"/>
         <FirstTimeSetup v-if="this.$store.state.isGuest === false && this.$store.state.isFirstTime === true" v-show="showTutorial" @nextButton="nextButton"/>
         <NavBar/>
+        <Weather/>
     </div>
 </template>
 
@@ -13,10 +14,11 @@
     import Map from "../components/Map.vue";
     import LotOverlay from "../components/LotOverlay.vue";
     import FirstTimeSetup from "../components/FirstTimeSetup.vue";
+    import Weather from "../components/Weather.vue";
     import { Auth, getAuth, onAuthStateChanged, User } from "firebase/auth";
     import { db } from "../myconfig";
 
-    @Component({ components: { NavBar, Map, LotOverlay, FirstTimeSetup } })
+    @Component({ components: { NavBar, Map, LotOverlay, FirstTimeSetup, Weather } })
     export default class HomeView extends Vue {
         lot?: string;
         showOverlay = false;
