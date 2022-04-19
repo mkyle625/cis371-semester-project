@@ -68,7 +68,7 @@ import { doc } from "firebase/firestore";
             .then((cred: UserCredential) => {
                 console.log(`Login successful: ${cred.user.displayName}`);
                 const userInfo:DocumentReference = doc(db, "USERS", cred.user.uid);
-                setDoc(userInfo, { name: cred.user.displayName }, {merge: true});
+                setDoc(userInfo, { name: cred.user.displayName, lastLogin: this.getDate() }, {merge: true});
                 this.$store.state.isGuest = false;
                 this.$router.push({ name: "home" });
                 this.loading = false;
@@ -85,6 +85,14 @@ import { doc } from "firebase/firestore";
             this.$router.push({ name: "home" });
             this.$store.state.isGuest = true;
             this.loading = false;
+        }
+
+        getDate(): string {
+            const today = new Date();
+            const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+            const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+            const dateTime = date+' '+time;
+            return dateTime;
         }
     }
 </script>
