@@ -31,14 +31,12 @@ import { db } from "../myconfig";
         }
 
         updated(): void {
-            console.log("Overlay mounting");
             this.checkFavorite();
         }
 
         // Check if selected lot is favorited
         async checkFavorite():Promise<void> {
             const auth = getAuth();
-            const userId = auth.currentUser?.uid;
 
             for(let index = 0; index<this.$store.state.favoritedLots.length; index++){
                 if(this.$store.state.favoritedLots[index] === this.lot){
@@ -48,21 +46,21 @@ import { db } from "../myconfig";
 
             if (this.lotFavorited) {
                 this.starStyle = "fa-solid fa-star";
-                console.log("Lot is favorited");
             }
             else {
                 this.starStyle = "fa-regular fa-star";
-                console.log("Lot is not favorited");
             }
         }
 
         async favoriteClick():Promise<void> {
             if (this.lotFavorited) {
                 this.removeFromFavorites();
+                this.lotFavorited = false;
                 this.starStyle = "fa-regular fa-star";
             }
             else {
                 this.addToFavorites();
+                this.lotFavorited = true;
                 this.starStyle = "fa-solid fa-star";
             }
         }
@@ -84,7 +82,7 @@ import { db } from "../myconfig";
             }).then(()=>{
                 //we call this function to update the global favoriteLots array 
                 this.loadFromFirebase();
-                console.log('saved');
+                console.log(`Added lot ${this.lot} to favorites`);
             });
             
         }
@@ -102,11 +100,11 @@ import { db } from "../myconfig";
                     }).then(()=>{
                         //we call this function to update the global favoriteLots array 
                         this.loadFromFirebase();
-                        console.log('removed');
+                        console.log(`Removed lot ${this.lot} from favorites`);
                     });
                     }
                 else{
-                    alert("This lot is not in your favorites!")
+                    alert(`Cannot remove ${this.lot} from favorites: not in favorites!`)
                     }
             }
         }
@@ -122,7 +120,7 @@ import { db } from "../myconfig";
             const doc = await profileCollectionRef.get();
             const collectedData = doc.data();
             if(!collectedData){
-                console.log("no matching doc")
+                console.log("Could not load favorites!")
             }
             else{
                 this.FavoriteLots = collectedData.FavoriteLots
@@ -130,12 +128,7 @@ import { db } from "../myconfig";
             }
         }
     }
-   
-
-
-
-
-    }
+}
 </script>
 
 <style scoped>
