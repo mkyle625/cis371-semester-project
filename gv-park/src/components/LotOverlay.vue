@@ -1,15 +1,9 @@
 <template>
     <div id="overlay">
         <div id="header">
-            <span>Lot {{lot}}</span>
+            <span>Lot {{lot}} <i v-if="this.$store.state.isGuest === false" class="fa-solid fa-star"></i></span>
             <i class="fa-solid fa-circle-xmark" @click="closeOverlay"></i>
         </div>
-        <div v-if= "this.$store.state.isGuest === false" @click="addToFavorites">
-        <span>Add to favorites</span>
-      </div>
-      <div v-if="this.$store.state.isGuest === false" @click="removeFromFavorites">
-          <span>Remove from favorites</span>
-      </div>
         <div id="type">
             <span>Lot type here - </span>
             <i class="fa-solid fa-exclamation-triangle"></i>
@@ -19,7 +13,7 @@
 </template>
 
 <script lang="ts">
-    import { arrayRemove, arrayUnion, FieldValue } from "@firebase/firestore";
+import { arrayRemove, arrayUnion } from "@firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { Vue, Component, Prop } from "vue-property-decorator";
 import { db } from "../myconfig";
@@ -34,9 +28,6 @@ import { db } from "../myconfig";
             this.$emit("closeOverlay");
         }
 
-
-
-
         async addToFavorites():Promise<void>{
             console.log(this.$store.state.favoritedLots)
             console.log("clicked");
@@ -46,8 +37,6 @@ import { db } from "../myconfig";
             //add to local array 
             this.FavoriteLots.push(this.lot);
             //add to global array 
-            
-          
 
             const profileRef = db.collection("USERS").doc(userId).collection("Profile Info").doc("ProfileView");
             console.log(this.lot)
@@ -59,7 +48,30 @@ import { db } from "../myconfig";
                 console.log('saved');
             });
             
-    }
+        }
+
+        async removeFromFavorites():Promise<void>{
+
+            const auth = getAuth();
+            const userId = auth.currentUser?.uid;
+
+        for(let index = 0; index<this.$store.state.favoritedLots.length; index++){
+            if(this.$store.state.favoritedLots[index] === this.lot){
+                const profileRef = db.collection("USERS").doc(userId).collection("Profile Info").doc("ProfileView");
+                const appendRef = await profileRef.update({
+                    FavoriteLots: arrayRemove(this.lot)
+                }).then(()=>{
+                    //we call this function to update the global favoriteLots array 
+                    this.loadFromFirebase();
+                    console.log('removed');
+                });
+                }
+            else{
+                alert("This lot is not in your favorites!")
+                }
+
+            }
+        }
 
 
         async loadFromFirebase():Promise<void>{
@@ -75,36 +87,11 @@ import { db } from "../myconfig";
             console.log("no matching doc")
         }
         else{
-        this.FavoriteLots = collectedData.FavoriteLots
-        this.$store.state.favoritedLots = this.FavoriteLots
-        console.log("here is on lotOverlay:" + this.$store.state.favoritedLots)
+            this.FavoriteLots = collectedData.FavoriteLots
+            this.$store.state.favoritedLots = this.FavoriteLots
+            console.log("here is on lotOverlay:" + this.$store.state.favoritedLots)
         }
         }
-    }
-
-    async removeFromFavorites():Promise<void>{
-
-        const auth = getAuth();
-        const userId = auth.currentUser?.uid;
-
-     for(let index = 0; index<this.$store.state.favoritedLots.length; index++){
-         if(this.$store.state.favoritedLots[index] === this.lot){
-            const profileRef = db.collection("USERS").doc(userId).collection("Profile Info").doc("ProfileView");
-            const appendRef = await profileRef.update({
-                FavoriteLots: arrayRemove(this.lot)
-            }).then(()=>{
-                //we call this function to update the global favoriteLots array 
-                this.loadFromFirebase();
-                console.log('removed');
-            });
-         }
-         else{
-             alert("This lot is not in your favorites!")
-         }
-
-    }
-
-
     }
    
 
@@ -162,5 +149,9 @@ import { db } from "../myconfig";
         margin-top: 1.3vh;
         font-size: 2em;
         color: gray;
+    }
+
+    .fa-star {
+        color: #ffc400;
     }
 </style>

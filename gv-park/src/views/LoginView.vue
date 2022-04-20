@@ -27,14 +27,12 @@
     import {
         Auth,
         getAuth,
-        getRedirectResult,
         GoogleAuthProvider,
         signInWithPopup,
-        signInWithRedirect,
         User,
         UserCredential,
     } from "firebase/auth";
-import { DocumentReference, DocumentSnapshot, getDoc, setDoc } from "@firebase/firestore";
+import { DocumentReference, setDoc } from "@firebase/firestore";
 import { db } from "../myconfig";
 import { doc } from "firebase/firestore";
 
