@@ -1,7 +1,7 @@
 <template>
     <div id="overlay">
         <div id="header">
-            <span>Lot {{lot}} <i v-if="this.$store.state.isGuest === false" class="fa-solid fa-star"></i></span>
+            <span>Lot {{lot}} <i v-if="this.$store.state.isGuest === false" :class="starStyle"></i></span>
             <i class="fa-solid fa-circle-xmark" @click="closeOverlay"></i>
         </div>
         <div id="type">
@@ -22,10 +22,39 @@ import { db } from "../myconfig";
     export default class LotOverlay extends Vue {
 
         @Prop() lot!: string;
-        FavoriteLots:Array<string> = []; 
+        FavoriteLots:Array<string> = [];
+        starStyle = "fa-regular fa-star";
 
         closeOverlay(): void {
             this.$emit("closeOverlay");
+        }
+
+        updated(): void {
+            console.log("Overlay mounting");
+            this.checkFavorite();
+        }
+
+        // Check if selected lot is favorited
+        async checkFavorite():Promise<void> {
+            const auth = getAuth();
+            const userId = auth.currentUser?.uid;
+
+            let favorited = false;
+
+            for(let index = 0; index<this.$store.state.favoritedLots.length; index++){
+                if(this.$store.state.favoritedLots[index] === this.lot){
+                    favorited = true;
+                }
+            }
+
+            if (favorited) {
+                this.starStyle = "fa-solid fa-star";
+                console.log("Lot is favorited");
+            }
+            else {
+                this.starStyle = "fa-regular fa-star"
+                console.log("Lot is not favorited");
+            }
         }
 
         async addToFavorites():Promise<void>{
@@ -55,21 +84,20 @@ import { db } from "../myconfig";
             const auth = getAuth();
             const userId = auth.currentUser?.uid;
 
-        for(let index = 0; index<this.$store.state.favoritedLots.length; index++){
-            if(this.$store.state.favoritedLots[index] === this.lot){
-                const profileRef = db.collection("USERS").doc(userId).collection("Profile Info").doc("ProfileView");
-                const appendRef = await profileRef.update({
-                    FavoriteLots: arrayRemove(this.lot)
-                }).then(()=>{
-                    //we call this function to update the global favoriteLots array 
-                    this.loadFromFirebase();
-                    console.log('removed');
-                });
-                }
-            else{
-                alert("This lot is not in your favorites!")
-                }
-
+            for(let index = 0; index<this.$store.state.favoritedLots.length; index++){
+                if(this.$store.state.favoritedLots[index] === this.lot){
+                    const profileRef = db.collection("USERS").doc(userId).collection("Profile Info").doc("ProfileView");
+                    const appendRef = await profileRef.update({
+                        FavoriteLots: arrayRemove(this.lot)
+                    }).then(()=>{
+                        //we call this function to update the global favoriteLots array 
+                        this.loadFromFirebase();
+                        console.log('removed');
+                    });
+                    }
+                else{
+                    alert("This lot is not in your favorites!")
+                    }
             }
         }
 
