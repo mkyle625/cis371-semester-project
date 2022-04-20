@@ -9,22 +9,31 @@
             <i class="fa-solid fa-exclamation-triangle"></i>
             <p>You can't park here with your pass!</p>
         </div>
+        <div id="votes">
+            <i class="fa-solid fa-thumbs-up" @click="likes += 1"></i>
+            <LikeBar :likes="likes" :dislikes="dislikes" :key="likes+dislikes"/>
+            <i class="fa-solid fa-thumbs-down" @click="dislikes += 1"></i>
+        </div>
     </div>
 </template>
 
 <script lang="ts">
+import LikeBar  from "../components/LikeBar.vue";
 import { arrayRemove, arrayUnion } from "@firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { Vue, Component, Prop } from "vue-property-decorator";
 import { db } from "../myconfig";
 
-    @Component
+    @Component({ components: { LikeBar } })
     export default class LotOverlay extends Vue {
 
         @Prop() lot!: string;
         FavoriteLots:Array<string> = [];
         starStyle = "fa-regular fa-star";
         lotFavorited = false;
+
+        likes = 1;
+        dislikes = 1;
 
         closeOverlay(): void {
             this.$emit("closeOverlay");
@@ -156,6 +165,20 @@ import { db } from "../myconfig";
     #type {
         display: flex;
         flex-direction: row;
+    }
+
+    #votes {
+        display: flex;
+        flex-direction: row;
+        align-self: center;
+    }
+
+    #votes > i {
+        font-size: 2em;
+    }
+
+    #likebar {
+        margin: 10px;
     }
 
     #type > span {
