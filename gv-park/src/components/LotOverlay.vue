@@ -177,6 +177,14 @@ import { db } from "../myconfig";
         font-size: 2em;
     }
 
+    .fa-thumbs-up {
+        color: lightgreen;
+    }
+
+    .fa-thumbs-down {
+        color: coral;
+    }
+
     #likebar {
         margin: 10px;
     }
