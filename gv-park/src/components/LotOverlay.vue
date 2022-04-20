@@ -1,7 +1,7 @@
 <template>
     <div id="overlay">
         <div id="header">
-            <span>Lot {{lot}} <i v-if="this.$store.state.isGuest === false" :class="starStyle"></i></span>
+            <span>Lot {{lot}} <i v-if="this.$store.state.isGuest === false" :class="starStyle" @click="favoriteClick"></i></span>
             <i class="fa-solid fa-circle-xmark" @click="closeOverlay"></i>
         </div>
         <div id="type">
@@ -24,6 +24,7 @@ import { db } from "../myconfig";
         @Prop() lot!: string;
         FavoriteLots:Array<string> = [];
         starStyle = "fa-regular fa-star";
+        lotFavorited = false;
 
         closeOverlay(): void {
             this.$emit("closeOverlay");
@@ -39,21 +40,30 @@ import { db } from "../myconfig";
             const auth = getAuth();
             const userId = auth.currentUser?.uid;
 
-            let favorited = false;
-
             for(let index = 0; index<this.$store.state.favoritedLots.length; index++){
                 if(this.$store.state.favoritedLots[index] === this.lot){
-                    favorited = true;
+                    this.lotFavorited = true;
                 }
             }
 
-            if (favorited) {
+            if (this.lotFavorited) {
                 this.starStyle = "fa-solid fa-star";
                 console.log("Lot is favorited");
             }
             else {
-                this.starStyle = "fa-regular fa-star"
+                this.starStyle = "fa-regular fa-star";
                 console.log("Lot is not favorited");
+            }
+        }
+
+        async favoriteClick():Promise<void> {
+            if (this.lotFavorited) {
+                this.removeFromFavorites();
+                this.starStyle = "fa-regular fa-star";
+            }
+            else {
+                this.addToFavorites();
+                this.starStyle = "fa-solid fa-star";
             }
         }
 
