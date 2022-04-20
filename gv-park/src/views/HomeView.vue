@@ -20,7 +20,7 @@
 
     @Component({ components: { NavBar, Map, LotOverlay, FirstTimeSetup, Weather } })
     export default class HomeView extends Vue {
-        lot?: string;
+        lot = "none";
         showOverlay = false;
         showTutorial = true;
 
