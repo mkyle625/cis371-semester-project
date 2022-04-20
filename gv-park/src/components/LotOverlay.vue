@@ -31,6 +31,7 @@ import { db } from "../myconfig";
         }
 
         updated(): void {
+            this.lotFavorited = false;
             this.checkFavorite();
         }
 
@@ -52,16 +53,16 @@ import { db } from "../myconfig";
             }
         }
 
-        async favoriteClick():Promise<void> {
+        favoriteClick(): void {
             if (this.lotFavorited) {
-                this.removeFromFavorites();
-                this.lotFavorited = false;
                 this.starStyle = "fa-regular fa-star";
+                this.lotFavorited = false;
+                this.removeFromFavorites();
             }
             else {
-                this.addToFavorites();
                 this.lotFavorited = true;
                 this.starStyle = "fa-solid fa-star";
+                this.addToFavorites();
             }
         }
 
