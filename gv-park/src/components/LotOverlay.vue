@@ -36,9 +36,7 @@ import { db } from "../myconfig";
         }
 
         // Check if selected lot is favorited
-        async checkFavorite():Promise<void> {
-            const auth = getAuth();
-
+        checkFavorite():void {
             for(let index = 0; index<this.$store.state.favoritedLots.length; index++){
                 if(this.$store.state.favoritedLots[index] === this.lot){
                     this.lotFavorited = true;
@@ -103,9 +101,6 @@ import { db } from "../myconfig";
                         this.loadFromFirebase();
                         console.log(`Removed lot ${this.lot} from favorites`);
                     });
-                    }
-                else{
-                    alert(`Cannot remove ${this.lot} from favorites: not in favorites!`)
                     }
             }
         }
