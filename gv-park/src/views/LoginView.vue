@@ -77,6 +77,7 @@ import { doc } from "firebase/firestore";
                 //     }
                 // });
                 this.$store.state.isGuest = false;
+                this.getFavoriteLots();
                 this.$router.push({ name: "home" });
                 this.loading = false;
             })
@@ -100,6 +101,25 @@ import { doc } from "firebase/firestore";
             const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
             const dateTime = date+' '+time;
             return dateTime;
+        }
+
+        async getFavoriteLots():Promise<void>{
+    
+            if(this.$store.state.guestLogin !== "true"){
+                const auth = getAuth();
+                const userId = auth.currentUser?.uid;
+                
+                const profileCollectionRef = db.collection("USERS").doc(userId).collection("Profile Info").doc("ProfileView");
+                const doc = await profileCollectionRef.get();
+                const collectedData = doc.data();
+                if(!collectedData){
+                    console.log("no matching doc")
+                }
+                else{
+                    this.$store.state.favoritedLots = collectedData.FavoriteLots;
+                    console.log(`Favorite lots loaded: ${this.$store.state.favoritedLots}`);
+                }
+            }
         }
     }
 </script>

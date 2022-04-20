@@ -77,20 +77,19 @@ import { db } from "../myconfig";
         async loadFromFirebase():Promise<void>{
     
         if(this.$store.state.guestLogin !== "true"){
-        const auth = getAuth();
-        const userId = auth.currentUser?.uid;
-        
-        const profileCollectionRef = db.collection("USERS").doc(userId).collection("Profile Info").doc("ProfileView");
-        const doc = await profileCollectionRef.get();
-        const collectedData = doc.data();
-        if(!collectedData){
-            console.log("no matching doc")
-        }
-        else{
-            this.FavoriteLots = collectedData.FavoriteLots
-            this.$store.state.favoritedLots = this.FavoriteLots
-            console.log("here is on lotOverlay:" + this.$store.state.favoritedLots)
-        }
+            const auth = getAuth();
+            const userId = auth.currentUser?.uid;
+            
+            const profileCollectionRef = db.collection("USERS").doc(userId).collection("Profile Info").doc("ProfileView");
+            const doc = await profileCollectionRef.get();
+            const collectedData = doc.data();
+            if(!collectedData){
+                console.log("no matching doc")
+            }
+            else{
+                this.FavoriteLots = collectedData.FavoriteLots
+                this.$store.state.favoritedLots = this.FavoriteLots
+            }
         }
     }
    
