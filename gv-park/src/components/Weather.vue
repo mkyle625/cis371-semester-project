@@ -7,7 +7,7 @@
             <i v-if="weatherCondition === 'Rain'" class="fa-solid fa-cloud-showers-heavy"></i>
             <i v-if="weatherCondition === 'Snow'" class="fa-solid fa-snowflake"></i>
             <i v-if="weatherCondition === 'Clear'" class="fa-solid fa-sun"></i>
-            <span>{{weatherCondition}} - {{temperature}}°</span>
+            <span v-bind:id="weatherCondition">{{weatherCondition}} - {{temperature}}°</span>
         </div>
     </div>
 </template>
@@ -40,12 +40,12 @@
 <style scoped>
     #weather {
         z-index: 900;
-        width: 10vw;
-        height: 10vh;
+        width: 150px;
+        height: 100px;
         background-color: white;
         position: absolute;
         top: 2vh;
-        right: 10vh;
+        right: 4vh;
         align-self: center;
         border-radius: 20px;
         display: flex;
@@ -57,9 +57,63 @@
         justify-content: space-between;
     }
     
-    #header > span {
-        margin-left: 0.5vw;
-        margin-top: 1.5vh;
+    /* #header > span {
+        margin-left: 25px;
+        margin-top: 15px;
+        font-size: 1em;
+        font-weight: bold;
+        align-content: center;
+        justify-content: center;
+    } */
+
+    #Thunderstorm {
+        margin-left: 20px;
+        margin-top: 15px;
+        font-size: 0.8em;
+        font-weight: bold;
+        align-content: center;
+        justify-content: center;
+    }
+
+    #Clouds {
+        margin-left: 30px;
+        margin-top: 15px;
+        font-size: 1em;
+        font-weight: bold;
+        align-content: center;
+        justify-content: center;
+    }
+
+    #Drizzle {
+        margin-left: 30px;
+        margin-top: 15px;
+        font-size: 1em;
+        font-weight: bold;
+        align-content: center;
+        justify-content: center;
+    }
+
+    #Rain {
+        margin-left: 40px;
+        margin-top: 15px;
+        font-size: 1em;
+        font-weight: bold;
+        align-content: center;
+        justify-content: center;
+    }
+
+    #Snow {
+        margin-left: 40px;
+        margin-top: 15px;
+        font-size: 1em;
+        font-weight: bold;
+        align-content: center;
+        justify-content: center;
+    }
+
+    #Clear {
+        margin-left: 40px;
+        margin-top: 15px;
         font-size: 1em;
         font-weight: bold;
         align-content: center;
@@ -73,48 +127,48 @@
 
     .fa-cloud {
         margin-right: 0vw;
-        margin-left: 3.6vw;
-        margin-top: 1.3vh;
+        margin-left: 55px;
+        margin-top: 15px;
         font-size: 2em;
         color: gray;
     }
 
     .fa-cloud-bolt {
         margin-right: 0vw;
-        margin-left: 3.6vw;
-        margin-top: 1.3vh;
+        margin-left: 60px;
+        margin-top: 15px;
         font-size: 2em;
         color: gray;
     }
 
     .fa-cloud-rain {
         margin-right: 0vw;
-        margin-left: 3.6vw;
-        margin-top: 1.3vh;
+        margin-left: 60px;
+        margin-top: 15px;
         font-size: 2em;
         color: rgb(0, 197, 237);
     }
 
     .fa-cloud-showers-heavy {
         margin-right: 0vw;
-        margin-left: 3.6vw;
-        margin-top: 1.3vh;
+        margin-left: 60px;
+        margin-top: 15px;
         font-size: 2em;
         color: rgb(1, 26, 218);
     }
 
     .fa-snowflake {
         margin-right: 0vw;
-        margin-left: 3.6vw;
-        margin-top: 1.3vh;
+        margin-left: 60px;
+        margin-top: 15px;
         font-size: 2em;
         color: gray;
     }
 
     .fa-sun {
         margin-right: 0vw;
-        margin-left: 3.6vw;
-        margin-top: 1.3vh;
+        margin-left: 60px;
+        margin-top: 15px;
         font-size: 2em;
         color: rgb(236, 236, 9);
     }
