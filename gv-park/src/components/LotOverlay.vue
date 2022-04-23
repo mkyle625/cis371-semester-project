@@ -40,7 +40,6 @@ import { db } from "../myconfig";
         }
 
         async addToFavorites():Promise<void>{
-            console.log(this.$store.state.favoritedLots)
             const auth = getAuth();
             const userId = auth.currentUser?.uid;
 
@@ -57,7 +56,6 @@ import { db } from "../myconfig";
                 this.loadFromFirebase();
                 console.log(`Added lot ${this.lot} to favorites`);
             });
-            
         }
 
         async removeFromFavorites():Promise<void>{

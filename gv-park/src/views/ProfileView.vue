@@ -11,7 +11,7 @@
                 <p>You have voted {{totalUserVotes}} times</p>
                 <h2>Favorite lots</h2>
                 <div id="favoritelots">
-                    <span v-for="lot in favoriteLots" :key="`lot-${lot.name}`">{{lot}} </span>
+                    <span v-for="lot in favoriteLots" :key="`lot-${lot.name}-${lot}`">{{lot}} </span>
                 </div>
                 <h2>Badges</h2>
                 <p>{{userBadges}}</p>
