@@ -1,7 +1,8 @@
 <template>
     <div id="overlay">
         <div id="header">
-            <span>Lot {{lot}} <i v-if="this.$store.state.isGuest === false" :class="starStyle" @click="favoriteClick"></i></span>
+            <span>Lot {{lot}} <i class="fa-solid fa-plus" @click="addToFavorites"></i><i class="fa-solid fa-minus" @click="removeFromFavorites"></i></span>
+            <!-- <i v-if="this.$store.state.isGuest === false" :class="starStyle" @click="favoriteClick"></i> -->
             <i class="fa-solid fa-circle-xmark" @click="closeOverlay"></i>
         </div>
         <div id="type">
@@ -29,7 +30,6 @@ import { db } from "../myconfig";
 
         @Prop() lot!: string;
         FavoriteLots:Array<string> = [];
-        starStyle = "fa-regular fa-star";
         lotFavorited = false;
 
         likes = 1;
@@ -39,43 +39,8 @@ import { db } from "../myconfig";
             this.$emit("closeOverlay");
         }
 
-        updated(): void {
-            this.lotFavorited = false;
-            this.checkFavorite();
-        }
-
-        // Check if selected lot is favorited
-        checkFavorite():void {
-            for(let index = 0; index<this.$store.state.favoritedLots.length; index++){
-                if(this.$store.state.favoritedLots[index] === this.lot){
-                    this.lotFavorited = true;
-                }
-            }
-
-            if (this.lotFavorited) {
-                this.starStyle = "fa-solid fa-star";
-            }
-            else {
-                this.starStyle = "fa-regular fa-star";
-            }
-        }
-
-        favoriteClick(): void {
-            if (this.lotFavorited) {
-                this.starStyle = "fa-regular fa-star";
-                this.lotFavorited = false;
-                this.removeFromFavorites();
-            }
-            else {
-                this.lotFavorited = true;
-                this.starStyle = "fa-solid fa-star";
-                this.addToFavorites();
-            }
-        }
-
         async addToFavorites():Promise<void>{
             console.log(this.$store.state.favoritedLots)
-            console.log("clicked");
             const auth = getAuth();
             const userId = auth.currentUser?.uid;
 
@@ -208,7 +173,7 @@ import { db } from "../myconfig";
         color: gray;
     }
 
-    .fa-star {
-        color: #ffc400;
+    .fa-plus, .fa-minus {
+        color: gray;
     }
 </style>
