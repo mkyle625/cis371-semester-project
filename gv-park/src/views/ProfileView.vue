@@ -2,18 +2,20 @@
   <div>
       <GuestLogin v-if="this.$store.state.isGuest === true"></GuestLogin>
       <div v-else class = profileViewContainer> 
-            <img class="profile_image" :src="userPhotoURL" v-if="userPhotoURL.length > 0" width="64">
+            <img class="profile_image" :src="userPhotoURL" v-if="userPhotoURL.length > 0" width="100">
             <div class="profile_data">
                 <h1>{{userInfo}}</h1>
-                <h2>Parking pass type</h2>
+                <h2>Parking pass</h2>
                 <p>{{parkingPassType}}<p>
                 <h2>Total votes</h2>
-                <p>{{totalUserVotes}}</p>
+                <p>You have voted {{totalUserVotes}} times</p>
                 <h2>Favorite lots</h2>
-                <p>{{favoriteLots}}</p>
-                <h2>Badges:</h2>
+                <div id="favoritelots">
+                    <span v-for="lot in favoriteLots" :key="`lot-${lot.name}`">{{lot}} </span>
+                </div>
+                <h2>Badges</h2>
                 <p>{{userBadges}}</p>
-            <button id ="testBtn" @click = "saveToFirebase">test save data</button>
+            <!-- <button id ="testBtn" @click = "saveToFirebase">test save data</button> -->
             </div>
 
          
@@ -29,14 +31,8 @@
     import {
         Auth,
         getAuth,
-        getRedirectResult,
-        GoogleAuthProvider,
         onAuthStateChanged,
-        signInWithPopup,
-        signInWithRedirect,
-        signOut,
         User,
-        UserCredential,
     } from "firebase/auth";
     
     import {db} from "../myconfig"
@@ -129,14 +125,18 @@
 </script>
 
 <style scoped>
+.profile_image {
+    border-radius: 100px;
+}
+
 .profile_data {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        background-color: #fff;
-    }
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+}
+
 .profileViewContainer {
-    height: 100vh;
+    height: 80vh;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -145,8 +145,11 @@
     padding-top: 2vh;
 }
 .profile_data > h2{
-    margin-bottom: 1vh;
+    margin-bottom: 0.5vh;
     margin-top: 4vh;
+    font-size: 20px;
+    align-self: left;
+    color: #026eb1
 }
 .profile_data > p{
     margin-bottom: 1px;
@@ -154,20 +157,37 @@
 .profile_data > h1{
     margin-bottom: 3vh;
 }
-.btn {
-        border-radius: 20px;
-    }
-#LogoutBtn {
-        color: #0065a4;
-        margin-bottom: 1vh;
-        margin-top: 8vh;
 
-    }
+.btn {
+    border-radius: 20px;
+}
+#LogoutBtn {
+    color: #0065a4;
+    margin-bottom: 1vh;
+    margin-top: 8vh;
+
+}
+
 #LogoutBtn > span {
-        font-size: 4vh;
-    }
+    font-size: 4vh;
+}
+
 #testBtn {
     margin-top: 2vh;
+}
+
+#favoritelots {
+    display: flex;
+    flex-direction: row;
+}
+
+#favoritelots > span {
+    margin-right: 10px;
+    padding: 5px 10px;
+    background-color: #0065a4;
+    color: white;
+    border-radius: 10px;
+    font-weight: bold;
 }
 </style>
 
