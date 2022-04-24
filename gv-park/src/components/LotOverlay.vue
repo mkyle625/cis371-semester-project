@@ -5,8 +5,11 @@
             <!-- <i v-if="this.$store.state.isGuest === false" :class="starStyle" @click="favoriteClick"></i> -->
             <i class="fa-solid fa-circle-xmark" @click="closeOverlay"></i>
         </div>
-        <div>
-            Lot Status: {{lotStatus}}
+        <div id="lotStatus">
+            <p style="display:inline-block; margin-right:4px">Lot Status:</p> 
+            <p style="display:inline-block" v-bind:style="styleLot === 'Green' ?  'background-color:green; color:white' 
+            : styleLot==='Red' ?  'background-color:red; color:white;' :'background-color:yellow; '"> {{lotStatus}}</p>
+           
         </div>
         <div id="type">
             <span>Lot type here - </span>
@@ -39,6 +42,7 @@ import { db } from "../myconfig";
         dislikes = 1;
         lotStatus = ''
         totalVoteSum= 0; 
+        styleLot='';
 
         
         updated(): void {
@@ -54,12 +58,15 @@ import { db } from "../myconfig";
             console.log(likeVotePercent);
             if(likeVotePercent > 50){
                 this.lotStatus = 'Good' 
+                this.styleLot = 'Green'
             }
             else if(likeVotePercent === 50){
                 this.lotStatus = 'Fair'
+                this.styleLot = 'Yellow'
             }
             else if(likeVotePercent < 50){
                 this.lotStatus ='Poor'
+                this.styleLot = 'Red'
             }
         }
 
@@ -247,6 +254,8 @@ import { db } from "../myconfig";
         display: flex;
         flex-direction: row;
     }
+ 
+
 
     #votes {
         display: flex;
