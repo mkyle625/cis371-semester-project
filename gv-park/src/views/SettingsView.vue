@@ -19,8 +19,7 @@
             </option>
           </select>
         </form>
-    <button @click="saveToFirebase">save</button>
-    <span>{{selectedPassType}}</span>
+    <button @click="saveToFirebase">Save</button>
     
       <div class="LogoutBtn" @click="logoutFirebase">
         <span>Logout</span>
@@ -66,12 +65,35 @@ export default class SettingsView extends Vue {
 </script>
 
 <style scoped>
-.LogoutBtn {
-  color: #0065a4;
-  margin-bottom: 1vh;
-  margin-top: 15vh;
-  align-content: center;
+button {
+  margin-top: 3vh;
+  padding: 4vw 3vh;
+  border-radius: 20px;
+  background-color: #0065a4;
+  color: white;
+  border: none;
 }
+
+select {
+  padding: 1vh 3vw;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.LogoutBtn {
+  background-color: #0065a4;
+  color: white;
+  margin-bottom: 1vh;
+  margin-top: 5vh;
+  align-content: center;
+  padding: 5vw 5vh;
+  border-radius: 20px;
+}
+
+.LogoutBtn > span {
+  font-size: 20px;
+}
+
 .settingsViewContainer {
   height: 100vh;
   width: 100%;
