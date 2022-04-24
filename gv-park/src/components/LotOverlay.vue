@@ -98,7 +98,7 @@ import { db } from "../myconfig";
             
 
              const ref = db.collection("Parking Lot data").doc("lots").collection(this.lot).doc("lotdata")
-             const sendRef = await ref.set(data).then(() =>{
+             const sendRef = await ref.set(data, {merge: true}).then(() =>{
                  console.log('likes stored in firebase')
                   //call load so we can update this.likes var
              });
@@ -116,7 +116,7 @@ import { db } from "../myconfig";
             
 
              const r = db.collection("Parking Lot data").doc("lots").collection(this.lot).doc("lotdata")
-             const sendr = await r.set(data).then(() =>{
+             const sendr = await r.set(data, {merge: true}).then(() =>{
                  console.log('dislikes stored in firebase')
 
              });
