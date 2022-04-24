@@ -22,7 +22,7 @@
     export default class HomeView extends Vue {
         lot = "none";
         userParkingPass = "";
-        userFavoriteLot = "";
+        userFavoriteLot = Array<string>();
         showOverlay = false;
         showTutorial = true;
 
@@ -41,7 +41,7 @@
         nextButton(parkingPass: string, favoriteLot: string): void {
             this.showTutorial = false;
             this.userParkingPass = parkingPass;
-            this.userFavoriteLot = favoriteLot;
+            this.userFavoriteLot[0] = favoriteLot;
             this.setFireBaseData();
         }
 
