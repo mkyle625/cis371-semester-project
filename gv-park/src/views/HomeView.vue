@@ -1,7 +1,7 @@
 <template>
     <div style="height: 100%">
         <Map @lot-tapped="selectLot"/>
-        <LotOverlay :lot="lot" v-show="showOverlay" @closeOverlay="closeOverlay"/>
+        <LotOverlay :lot="lot" v-show="showOverlay" @closeOverlay="closeOverlay" :v-key="lot"/>
         <FirstTimeSetup v-if="this.$store.state.isGuest === false && this.$store.state.isFirstTime === true" v-show="showTutorial" @nextButton="nextButton"/>
         <NavBar/>
         <Weather/>

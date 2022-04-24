@@ -36,7 +36,7 @@ import { db } from "../myconfig";
         dislikes = 1;
 
         
-        mounted(): void {
+        updated(): void {
             this.loadFromFirebase();
         }
 
@@ -136,6 +136,7 @@ import { db } from "../myconfig";
                 console.log("Could not load favorites!")
             }
             else{
+                
                 this.FavoriteLots = collectedData.FavoriteLots
                 this.$store.state.favoritedLots = this.FavoriteLots
             }
@@ -155,11 +156,18 @@ import { db } from "../myconfig";
                     console.log("like count: " + collectedLotData.likes);
 
                 }
+                else{ 
+                    //if likes dont exist in firebase just init to 1
+                    //this.likes =1; 
+                }
                 if(collectedLotData.dislikes > 0){
                     this.dislikes = collectedLotData.dislikes
 
                     //debug purposes
                     console.log("dislike count: " + collectedLotData.dislikes);   
+                }
+                else{
+                    //this.dislikes=1;
                 }
                 
                 
