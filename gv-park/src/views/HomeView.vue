@@ -25,14 +25,15 @@
         showTutorial = true;
 
         mounted() {
+            this.$store.state.isFirstTime = false;
             this.loadFireBaseData();
             // ONLY FOR TESTING
             // Set isFirstTime to true
-            this.$store.state.isFirstTime = true;
-            if (this.$store.state.isFirstTime === true) {
-                this.showTutorial = true;
-            }
-            this.showTutorial = true;
+            //this.$store.state.isFirstTime = true;
+            //if (this.$store.state.isFirstTime === true) {
+                //this.showTutorial = true;
+            //}
+            //this.showTutorial = true;
         }
 
         selectLot(name: string): void {
@@ -44,6 +45,7 @@
 
         nextButton() {
             this.showTutorial = false;
+            this.setFireBaseData();
         }
 
         closeOverlay(): void {
@@ -55,19 +57,35 @@
             if (this.$store.state.isGuest !== true) {
                 const auth = getAuth();
                 const userID = auth.currentUser?.uid;
-                const profileCollectionRef = db.collection("USERS").doc(userID).collection("Profile Info").doc("ProfileView");
+                const profileCollectionRef = db.collection("USERS").doc(userID);
                 const document = await profileCollectionRef.get();
                 const data = document.data();
-                // ONLY FOR TESTING
-                // Manually set to true
-                this.$store.state.isFirstTime = false;//data?.isFirstTime;
-                this.showTutorial = true;
-                // if (data?.isFirstTime === true) {
-                //     this.showTutorial = true;
-                // }
-                // else {
-                //     this.showTutorial = false;
-                // }
+                
+                if (data?.firstLogin === null || data?.firstLogin === undefined) {
+                    // Show the first time setup
+                    this.$store.state.isFirstTime = true;
+                    this.showTutorial = true;
+
+                    // Update doc and merge firstLogin to false
+                    //await profileCollectionRef.set({ firstLogin: false }, { merge: true });
+                }
+                else {
+                    this.$store.state.isFirstTime = data?.firstLogin;
+                }
+            
+            }
+        }
+
+        async setFireBaseData() {
+            if (this.$store.state.isGuest !== true) {
+                const auth = getAuth();
+                const userID = auth.currentUser?.uid;
+                const profileCollectionRef = db.collection("USERS").doc(userID);
+                const document = await profileCollectionRef.get();
+                const data = document.data();
+                
+                await profileCollectionRef.set({ firstLogin: false }, { merge: true });
+            
             }
         }
     }
