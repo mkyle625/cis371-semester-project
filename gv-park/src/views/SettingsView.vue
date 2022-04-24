@@ -4,7 +4,7 @@
     <GuestLogin v-if="this.$store.state.isGuest === true"></GuestLogin>
     <div v-else class="settingsViewContainer">
       <form>
-          <label for="parkingPassType">Parking pass type:</label><br />
+          <label for="parkingPassType">Change Parking pass type:</label><br />
           <select id="parkingPassType" v-model="selectedPassType">
             <option disabled=true>Please choose one</option>
             <option value="Student Commuter Pass">Student Commuter pass</option>
