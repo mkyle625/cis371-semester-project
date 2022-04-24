@@ -5,6 +5,9 @@
             <!-- <i v-if="this.$store.state.isGuest === false" :class="starStyle" @click="favoriteClick"></i> -->
             <i class="fa-solid fa-circle-xmark" @click="closeOverlay"></i>
         </div>
+        <div>
+            Lot Status: {{lotStatus}}
+        </div>
         <div id="type">
             <span>Lot type here - </span>
             <i class="fa-solid fa-exclamation-triangle"></i>
@@ -34,6 +37,8 @@ import { db } from "../myconfig";
 
         likes = 1;
         dislikes = 1;
+        lotStatus = ''
+        totalVoteSum= 0; 
 
         
         updated(): void {
@@ -42,6 +47,20 @@ import { db } from "../myconfig";
             db.collection("Parking Lot data").doc("lots").collection(this.lot).doc("lotdata").onSnapshot(res => {
                 this.loadFromFirebase();
             })
+
+
+            this.totalVoteSum = this.likes + this.dislikes
+            const likeVotePercent = this.calcPercentage(this.likes,this.totalVoteSum)
+            console.log(likeVotePercent);
+            if(likeVotePercent > 50){
+                this.lotStatus = 'Good' 
+            }
+            else if(likeVotePercent === 50){
+                this.lotStatus = 'Fair'
+            }
+            else if(likeVotePercent < 50){
+                this.lotStatus ='Poor'
+            }
         }
 
         beforeUpdate(): void {
@@ -51,6 +70,10 @@ import { db } from "../myconfig";
 
         closeOverlay(): void {
             this.$emit("closeOverlay");
+        }
+
+        calcPercentage(partialVal:number, totalVal:number){
+            return (100*partialVal) / totalVal;
         }
 
         async addToFavorites():Promise<void>{
