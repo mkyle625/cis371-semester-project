@@ -11,9 +11,9 @@
             <p>You can't park here with your pass!</p>
         </div>
         <div id="votes">
-            <i class="fa-solid fa-thumbs-up" @click="likes+=1; storeLikesinFirebase()"></i>
+            <i class="fa-solid fa-thumbs-up" @click="storeLikesinFirebase()"></i>
             <LikeBar :likes="likes" :dislikes="dislikes" :key="likes+dislikes"/>
-            <i class="fa-solid fa-thumbs-down" @click="dislikes+=1; storeDislikesinFirebase()"></i>
+            <i class="fa-solid fa-thumbs-down" @click="storeDislikesinFirebase()"></i>
         </div>
     </div>
 </template>
@@ -87,6 +87,8 @@ import { db } from "../myconfig";
 
 
         async storeLikesinFirebase():Promise<void>{
+            this.loadFromFirebase();
+            this.likes +=1; 
             const data = { 
                 likes: this.likes
             }
@@ -96,7 +98,6 @@ import { db } from "../myconfig";
              const sendRef = await ref.set(data).then(() =>{
                  console.log('likes stored in firebase')
                   //call load so we can update this.likes var
-                 this.loadFromFirebase();
              });
 
            
@@ -104,6 +105,8 @@ import { db } from "../myconfig";
         }
 
         async storeDislikesinFirebase():Promise<void>{
+            this.loadFromFirebase();
+            this.dislikes+=1; 
             const data = { 
                 dislikes: this.dislikes
             }
@@ -112,8 +115,7 @@ import { db } from "../myconfig";
              const r = db.collection("Parking Lot data").doc("lots").collection(this.lot).doc("lotdata")
              const sendr = await r.set(data).then(() =>{
                  console.log('dislikes stored in firebase')
-                //call load so we can update this.likes var
-                 this.loadFromFirebase();
+
              });
 
           
@@ -146,8 +148,21 @@ import { db } from "../myconfig";
                 console.log("ERROR: could not fetch likes for " + this.lot); 
             }
             else{ 
-                console.log("here" + collectedLotData.likes);
-                this.likes = collectedLotData.likes
+        
+                if(collectedLotData.likes > 0){
+                    this.likes = collectedLotData.likes
+                    //debug purposes
+                    console.log("like count: " + collectedLotData.likes);
+
+                }
+                if(collectedLotData.dislikes > 0){
+                    this.dislikes = collectedLotData.dislikes
+
+                    //debug purposes
+                    console.log("dislike count: " + collectedLotData.dislikes);   
+                }
+                
+                
                 
             }
             
