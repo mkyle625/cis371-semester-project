@@ -5,15 +5,15 @@
             <img class="profile_image" :src="userPhotoURL" v-if="userPhotoURL.length > 0" width="100">
             <div class="profile_data">
                 <h1>{{userInfo}}</h1>
-                <h2>Parking pass</h2>
+                <h2>Parking pass <i class="fa-solid fa-ticket-simple"></i></h2>
                 <p>{{parkingPassType}}<p>
-                <h2>Total votes</h2>
+                <h2>Total votes <i class="fa-solid fa-thumbs-up"></i></h2>
                 <p>You have voted {{totalUserVotes}} times</p>
-                <h2>Favorite lots</h2>
+                <h2>Favorite lots <i class="fa-solid fa-star"></i></h2>
                 <div id="favoritelots">
                     <span v-for="lot in favoriteLots" :key="`lot-${lot.name}-${lot}`">{{lot}} </span>
                 </div>
-                <h2>Badges</h2>
+                <h2>Badges <i class="fa-solid fa-award"></i></h2>
                 <p>{{userBadges}}</p>
             <!-- <button id ="testBtn" @click = "saveToFirebase">test save data</button> -->
             </div>
@@ -133,6 +133,7 @@
     display: flex;
     flex-direction: column;
     background-color: #fff;
+    min-width: 70%;
 }
 
 .profileViewContainer {
@@ -156,6 +157,7 @@
 }
 .profile_data > h1{
     margin-bottom: 3vh;
+    text-align: center;
 }
 
 .btn {
