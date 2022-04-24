@@ -38,6 +38,9 @@ import { db } from "../myconfig";
         
         updated(): void {
             this.loadFromFirebase();
+            // db.collection("Parking Lot data").doc("lots").collection(this.lot).doc("lotdata").onSnapshot(res => {
+            //     console.log(`Data: ${res.data}`);
+            // })
         }
 
         closeOverlay(): void {

@@ -62,6 +62,18 @@
                 const data = document.data();
                 
                 if (data?.firstLogin === null || data?.firstLogin === undefined) {
+                    // Populate empty profile
+                    const newProfile = {
+                        parkingPassType: null,
+                        TotalVotes: 0,
+                        FavoriteLots: null,
+                        Badges: "Verified",
+                    };
+
+                    await profileCollectionRef.collection("Profile Info").doc("ProfileView").set(newProfile).then(() => {
+                        console.log("Instantiated new profile");
+                    });
+
                     // Show the first time setup
                     this.$store.state.isFirstTime = true;
                     this.showTutorial = true;
