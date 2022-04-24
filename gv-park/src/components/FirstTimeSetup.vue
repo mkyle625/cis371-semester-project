@@ -12,11 +12,11 @@
                 <label for="parkingPassType">Parking pass type:</label><br />
                 <select id="parkingPassType" v-model="userParkingPass">
                     <option disabled=true>Please choose one:</option>
-                    <option value="Student Commuter Pass">(Red) Student Commuter pass</option>
-                    <option value="Lot J Remote Commuter Pass">(Purple) Lot J Remote Commuter</option>
-                    <option value="Allendale Student Resident Pass">(Yellow) Allendale Student Resident</option>
-                    <option value="Calder Student Resident Pass">(Orange) Calder Student Resident</option>
-                    <option value="Faculty">(Blue) Faculty</option>
+                    <option value="Student Commuter Pass">Student Commuter pass</option>
+                    <option value="Lot J Remote Commuter Pass">Lot J Remote Commuter</option>
+                    <option value="Allendale Student Resident Pass">Allendale Student Resident</option>
+                    <option value="Calder Student Resident Pass">Calder Student Resident</option>
+                    <option value="Faculty">Faculty</option>
                     <option value="Pew Student Resident Pass">Pew Student Resident</option>
                     <option value="Remote Resident Seward Ramp Pass">Remote Resident Seward Ramp</option>
                 </select>
@@ -25,28 +25,28 @@
                 <label for="favoriteLot">Favorite lot:</label><br />
                 <select id="favoriteLot" v-model="userFavoriteLot">
                     <option disabled=true>Please choose one:</option>
-                    <option value="(Red) B">(Red) B</option>
-                    <option value="(Red) C1">(Red) C1</option>
-                    <option value="(Red) C2">(Red) C2</option>
-                    <option value="(Blue) D1">(Blue) D1</option>
-                    <option value="(Blue) D2">(Blue) D2</option>
-                    <option value="(Blue) E">(Blue) E</option>
-                    <option value="(Blue) F">(Blue) F</option>
-                    <option value="(Blue) G1">(Blue) G1</option>
-                    <option value="(Blue) F">(Blue) F</option>
-                    <option value="(Red) G2">(Red) G2</option>
-                    <option value="(Red) G3">(Red) G3</option>
-                    <option value="(Red) H1">(Red) H1</option>
-                    <option value="(Red) H2">(Red) H2</option>
-                    <option value="(Purple) J">(Purple) J</option>
-                    <option value="(Red) K1">(Red) K1</option>
-                    <option value="(Yellow) K2">(Yellow) K2</option>
-                    <option value="(Blue) M">(Blue) M</option>
-                    <option value="(Green) MP">(Green) MP</option>
-                    <option value="(Blue) N">(Blue) N</option>
-                    <option value="(Orange) O">(Orange) O</option>
-                    <option value="(Yellow) P1">(Yellow) P1</option>
-                    <option value="(Yellow) P2">(Yellow) P2</option>
+                    <option value="B">B</option>
+                    <option value="C1">C1</option>
+                    <option value="C2">C2</option>
+                    <option value="D1">D1</option>
+                    <option value="D2">D2</option>
+                    <option value="E">E</option>
+                    <option value="F">F</option>
+                    <option value="G1">G1</option>
+                    <option value="F"> F</option>
+                    <option value="G2">G2</option>
+                    <option value="G3">G3</option>
+                    <option value="H1">H1</option>
+                    <option value="H2">H2</option>
+                    <option value="J">J</option>
+                    <option value="K1">K1</option>
+                    <option value="K2">K2</option>
+                    <option value="M">M</option>
+                    <option value="MP">MP</option>
+                    <option value="N">N</option>
+                    <option value="O">O</option>
+                    <option value="P1">P1</option>
+                    <option value="P2">P2</option>
                 </select>
             </form>
             <div id="NextBtn" @click="nextButton">

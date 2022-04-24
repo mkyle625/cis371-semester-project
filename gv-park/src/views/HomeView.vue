@@ -2,7 +2,7 @@
     <div style="height: 100%">
         <Map @lot-tapped="selectLot"/>
         <LotOverlay :lot="lot" v-show="showOverlay" @closeOverlay="closeOverlay" :v-key="lot"/>
-        <FirstTimeSetup v-if="this.$store.state.isGuest === false && this.$store.state.isFirstTime === true" v-show="showTutorial" @nextButton="nextButton"/>
+        <FirstTimeSetup :userParkingPass="userParkingPass" :userFavoriteLot="userFavoriteLot" v-if="this.$store.state.isGuest === false && this.$store.state.isFirstTime === true" v-show="showTutorial" @nextButton="nextButton"/>
         <NavBar/>
         <Weather/>
     </div>
@@ -21,19 +21,14 @@
     @Component({ components: { NavBar, Map, LotOverlay, FirstTimeSetup, Weather } })
     export default class HomeView extends Vue {
         lot = "none";
+        userParkingPass = "";
+        userFavoriteLot = "";
         showOverlay = false;
         showTutorial = true;
 
         mounted() {
             this.$store.state.isFirstTime = false;
             this.loadFireBaseData();
-            // ONLY FOR TESTING
-            // Set isFirstTime to true
-            //this.$store.state.isFirstTime = true;
-            //if (this.$store.state.isFirstTime === true) {
-                //this.showTutorial = true;
-            //}
-            //this.showTutorial = true;
         }
 
         selectLot(name: string): void {
@@ -43,8 +38,10 @@
             this.showOverlay = true;
         }
 
-        nextButton() {
+        nextButton(parkingPass: string, favoriteLot: string): void {
             this.showTutorial = false;
+            this.userParkingPass = parkingPass;
+            this.userFavoriteLot = favoriteLot;
             this.setFireBaseData();
         }
 
@@ -92,12 +89,22 @@
             if (this.$store.state.isGuest !== true) {
                 const auth = getAuth();
                 const userID = auth.currentUser?.uid;
-                const profileCollectionRef = db.collection("USERS").doc(userID);
-                const document = await profileCollectionRef.get();
+                const userCollRef = db.collection("USERS").doc(userID);
+                const document = await userCollRef.get();
                 const data = document.data();
                 
-                await profileCollectionRef.set({ firstLogin: false }, { merge: true });
-            
+                await userCollRef.set({ firstLogin: false }, { merge: true });
+
+                const profDocRef = db.collection("USERS").doc(userID).collection("Profile Info").doc("ProfileView");
+                const profDoc = await profDocRef.get();
+                const profData = document.data();
+
+                // Update the user's favorite lot
+                await profDocRef.set({ FavoriteLots: this.userFavoriteLot }, { merge: true });
+               
+                // Update the user's parking pass
+                await profDocRef.set({ parkingPassType: this.userParkingPass }, { merge: true });
+
             }
         }
     }
