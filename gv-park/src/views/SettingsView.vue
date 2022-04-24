@@ -22,7 +22,7 @@
     <button @click="saveToFirebase">Save</button>
     
       <div class="LogoutBtn" @click="logoutFirebase">
-        <span>Logout</span>
+        <span>Logout <i class="fa-solid fa-arrow-right-from-bracket"></i></span>
       </div>
     </div>
   </div>
@@ -67,7 +67,7 @@ export default class SettingsView extends Vue {
 <style scoped>
 button {
   margin-top: 3vh;
-  padding: 4vw 3vh;
+  padding: 1.5vh 5vw;
   border-radius: 20px;
   background-color: #0065a4;
   color: white;
@@ -86,7 +86,7 @@ select {
   margin-bottom: 1vh;
   margin-top: 5vh;
   align-content: center;
-  padding: 5vw 5vh;
+  padding: 3vh 10vw;
   border-radius: 20px;
 }
 
