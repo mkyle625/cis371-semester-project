@@ -11,9 +11,9 @@
             <p>You can't park here with your pass!</p>
         </div>
         <div id="votes">
-            <i class="fa-solid fa-thumbs-up" @click="likes += 1"></i>
+            <i class="fa-solid fa-thumbs-up" @click="likes+=1; storeLikesinFirebase()"></i>
             <LikeBar :likes="likes" :dislikes="dislikes" :key="likes+dislikes"/>
-            <i class="fa-solid fa-thumbs-down" @click="dislikes += 1"></i>
+            <i class="fa-solid fa-thumbs-down" @click="dislikes+=1; storeDislikesinFirebase()"></i>
         </div>
     </div>
 </template>
@@ -34,6 +34,11 @@ import { db } from "../myconfig";
 
         likes = 1;
         dislikes = 1;
+
+        
+        mounted(): void {
+            this.loadFromFirebase();
+        }
 
         closeOverlay(): void {
             this.$emit("closeOverlay");
@@ -78,6 +83,44 @@ import { db } from "../myconfig";
         }
 
 
+
+
+
+        async storeLikesinFirebase():Promise<void>{
+            const data = { 
+                likes: this.likes
+            }
+            
+
+             const ref = db.collection("Parking Lot data").doc("lots").collection(this.lot).doc("lotdata")
+             const sendRef = await ref.set(data).then(() =>{
+                 console.log('likes stored in firebase')
+                  //call load so we can update this.likes var
+                 this.loadFromFirebase();
+             });
+
+           
+            
+        }
+
+        async storeDislikesinFirebase():Promise<void>{
+            const data = { 
+                dislikes: this.dislikes
+            }
+            
+
+             const r = db.collection("Parking Lot data").doc("lots").collection(this.lot).doc("lotdata")
+             const sendr = await r.set(data).then(() =>{
+                 console.log('dislikes stored in firebase')
+                //call load so we can update this.likes var
+                 this.loadFromFirebase();
+             });
+
+          
+        
+        }
+
+
         async loadFromFirebase():Promise<void>{
     
         if(this.$store.state.guestLogin !== "true"){
@@ -94,6 +137,26 @@ import { db } from "../myconfig";
                 this.FavoriteLots = collectedData.FavoriteLots
                 this.$store.state.favoritedLots = this.FavoriteLots
             }
+
+
+            const lotRef = db.collection("Parking Lot data").doc("lots").collection(this.lot).doc("lotdata")
+            const lotData = await lotRef.get(); 
+            const collectedLotData = lotData.data(); 
+            if(!collectedLotData){
+                console.log("ERROR: could not fetch likes for " + this.lot); 
+            }
+            else{ 
+                console.log("here" + collectedLotData.likes);
+                this.likes = collectedLotData.likes
+                
+            }
+            
+
+
+
+
+
+
         }
     }
 }
