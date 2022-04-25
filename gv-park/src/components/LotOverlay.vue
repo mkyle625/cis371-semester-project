@@ -6,16 +6,16 @@
             <i class="fa-solid fa-circle-xmark" @click="closeOverlay"></i>
         </div>
         <div id="lotStatus">
-            <p style="display:inline-block; margin-right:4px">Lot Status:</p> 
+            <p style="display:inline-block; margin-right:4px">Status:</p> 
             <p style="display:inline-block" v-bind:style="styleLot === 'Green' ?  'background-color:green; color:white' 
             : styleLot==='Red' ?  'background-color:red; color:white;' :'background-color:yellow; '"> {{lotStatus}}</p>
            
         </div>
-        <div id="type">
+        <!-- <div id="type">
             <span>Lot type here - </span>
             <i class="fa-solid fa-exclamation-triangle"></i>
             <p>You can't park here with your pass!</p>
-        </div>
+        </div> -->
         <div id="votes">
             <i class="fa-solid fa-thumbs-up" @click="storeLikesinFirebase()"></i>
             <LikeBar :likes="likes" :dislikes="dislikes" :key="likes+dislikes"/>
@@ -99,6 +99,7 @@ import { db } from "../myconfig";
                 //we call this function to update the global favoriteLots array 
                 this.loadFromFirebase();
                 console.log(`Added lot ${this.lot} to favorites`);
+                window.alert(`Lot ${this.lot} added to your favorites!`);
             });
         }
 
@@ -116,14 +117,11 @@ import { db } from "../myconfig";
                         //we call this function to update the global favoriteLots array 
                         this.loadFromFirebase();
                         console.log(`Removed lot ${this.lot} from favorites`);
+                        window.alert(`Lot ${this.lot} removed from your favorites.`);
                     });
-                    }
+                }
             }
         }
-
-
-
-
 
         async storeLikesinFirebase():Promise<void>{
             this.loadFromFirebase();
@@ -132,15 +130,11 @@ import { db } from "../myconfig";
                 likes: this.likes
             }
             
-
              const ref = db.collection("Parking Lot data").doc("lots").collection(this.lot).doc("lotdata")
              const sendRef = await ref.set(data, {merge: true}).then(() =>{
                  console.log('likes stored in firebase')
                   //call load so we can update this.likes var
              });
-
-           
-            
         }
 
         async storeDislikesinFirebase():Promise<void>{
@@ -156,11 +150,7 @@ import { db } from "../myconfig";
                  console.log('dislikes stored in firebase')
 
              });
-
-          
-        
         }
-
 
         async loadFromFirebase():Promise<void>{
     
@@ -179,7 +169,6 @@ import { db } from "../myconfig";
                 this.FavoriteLots = collectedData.FavoriteLots
                 this.$store.state.favoritedLots = this.FavoriteLots
             }
-
 
             const lotRef = db.collection("Parking Lot data").doc("lots").collection(this.lot).doc("lotdata")
             const lotData = await lotRef.get(); 
@@ -208,17 +197,7 @@ import { db } from "../myconfig";
                 else{
                     //this.dislikes=1;
                 }
-                
-                
-                
             }
-            
-
-
-
-
-
-
         }
     }
 }
@@ -255,8 +234,6 @@ import { db } from "../myconfig";
         flex-direction: row;
     }
  
-
-
     #votes {
         display: flex;
         flex-direction: row;
@@ -283,6 +260,16 @@ import { db } from "../myconfig";
         margin-left: 3vw;
         margin-top: 1.5vh;
         font-style: italic;
+    }
+
+    #lotStatus {
+        margin-left: 4vw;
+    }
+
+    #lotStatus > p:last-of-type {
+        padding: 0.5vh 1vw;
+        border-radius: 10px;
+        font-weight: bold;
     }
 
     .fa-exclamation-triangle {
