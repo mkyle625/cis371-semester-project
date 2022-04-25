@@ -26,7 +26,7 @@
 
 <script lang="ts">
 import LikeBar  from "../components/LikeBar.vue";
-import { arrayRemove, arrayUnion } from "@firebase/firestore";
+import { arrayRemove, arrayUnion, FieldValue, increment } from "@firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { Vue, Component, Prop } from "vue-property-decorator";
 import { db } from "../myconfig";
@@ -135,6 +135,21 @@ import { db } from "../myconfig";
                  console.log('likes stored in firebase')
                   //call load so we can update this.likes var
              });
+
+
+
+             if(this.$store.state.guestLogin !== "true"){
+            const auth = getAuth();
+            const userId = auth.currentUser?.uid;
+            //additional check to make sure guest is not logged in, for some reason the above if statement doesnt seem to constrict guests 
+            if(typeof userId !== 'undefined'){
+            const profileCollectionRef = db.collection("USERS").doc(userId).collection("Profile Info").doc("ProfileView");
+            //increment is a built in firebase func 
+            const inc = increment(1)
+            profileCollectionRef.update({TotalVotes: inc})
+            }
+             }
+
         }
 
         async storeDislikesinFirebase():Promise<void>{
@@ -150,6 +165,22 @@ import { db } from "../myconfig";
                  console.log('dislikes stored in firebase')
 
              });
+
+             if(this.$store.state.guestLogin !== "true"){
+            
+            const auth = getAuth();
+            const userId = auth.currentUser?.uid;
+            //additional check to make sure guest is not logged in, for some reason the above if statement doesnt seem to constrict guests 
+            if(typeof userId !== 'undefined'){
+            console.log(userId);
+            const profileCollectionRef = db.collection("USERS").doc(userId).collection("Profile Info").doc("ProfileView");
+            //increment is a built in firebase func 
+            const inc = increment(1)
+            profileCollectionRef.update({TotalVotes: inc})
+            }
+             }
+
+
         }
 
         async loadFromFirebase():Promise<void>{
@@ -180,9 +211,6 @@ import { db } from "../myconfig";
         
                 if(collectedLotData.likes > 0){
                     this.likes = collectedLotData.likes
-                    //debug purposes
-                    console.log("like count: " + collectedLotData.likes);
-
                 }
                 else{ 
                     //if likes dont exist in firebase just init to 1
@@ -190,9 +218,6 @@ import { db } from "../myconfig";
                 }
                 if(collectedLotData.dislikes > 0){
                     this.dislikes = collectedLotData.dislikes
-
-                    //debug purposes
-                    console.log("dislike count: " + collectedLotData.dislikes);   
                 }
                 else{
                     //this.dislikes=1;
