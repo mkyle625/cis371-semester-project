@@ -46,8 +46,8 @@ export default class LikeBar extends Vue {
 <style scoped>
     #likebar {
         background-color: lightgray;
-        height: 2vh;
-        width: 60vw;
+        height: 3vh;
+        width: 80vw;
         overflow: hidden;
         border-radius: 20px;
     }
@@ -67,5 +67,15 @@ export default class LikeBar extends Vue {
 
     div {
         text-align: center;
+    }
+
+    div > span {
+        height: 100%;
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        font-size: 15px;
     }
 </style>

@@ -18,9 +18,9 @@
         </div> -->
         <div id="votes">
             <i class="fa-solid fa-thumbs-up" @click="storeLikesinFirebase()"></i>
-            <LikeBar :likes="likes" :dislikes="dislikes" :key="likes+dislikes"/>
             <i class="fa-solid fa-thumbs-down" @click="storeDislikesinFirebase()"></i>
         </div>
+        <LikeBar :likes="likes" :dislikes="dislikes" :key="likes+dislikes"/>
     </div>
 </template>
 
@@ -241,18 +241,26 @@ import { db } from "../myconfig";
     }
 
     #votes > i {
+        margin: 0 5px 5px 5px;
+        color: whitesmoke;
+        padding: 10px;
+        border-radius: 20px;
+    }
+
+    #votes > i {
         font-size: 2em;
     }
 
     .fa-thumbs-up {
-        color: lightgreen;
+        background-color: #84da84;
     }
 
     .fa-thumbs-down {
-        color: coral;
+        background-color: coral;
     }
 
     #likebar {
+        align-self: center;
         margin: 10px;
     }
 
