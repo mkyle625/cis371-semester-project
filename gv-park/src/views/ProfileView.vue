@@ -14,7 +14,11 @@
                     <span v-for="lot in favoriteLots" :key="`lot-${lot.name}-${lot}`">{{lot}} </span>
                 </div>
                 <h2>Badges <i class="fa-solid fa-award"></i></h2>
-                <p>{{userBadges}}</p>
+                <div id="badges">
+                    <span v-for="badge in userBadges" :key="badge">
+                       {{ badge }}
+                        </span>
+                </div> 
             <!-- <button id ="testBtn" @click = "saveToFirebase">test save data</button> -->
             </div>
 
@@ -46,7 +50,7 @@
     totalUserVotes = 0;
     favoriteLots:Array<string>=[];
     //userBadges:Array<any>=[];
-    userBadges="";
+    userBadges:Array<string>=[];
 
 
    
@@ -112,8 +116,28 @@
         this.parkingPassType = collectedData.parkingPassType;
         this.totalUserVotes = collectedData.TotalVotes;
         this.favoriteLots = collectedData.FavoriteLots;
-        this.userBadges = collectedData.Badges
+        
+
+
+        //any user not logged in as guest will be granted verified badge
+        this.userBadges.push("Verified")
+        //as long as loadFirebase is only ran once in this file, there should be no duplicate badges
+        if(this.totalUserVotes >= 10){
+            this.userBadges.push("Bronze Voter ")
+            
         }
+        if(this.totalUserVotes >= 25){
+            this.userBadges.push("Silver Voter")
+        }
+        if (this.totalUserVotes >=50){
+            this.userBadges.push("Gold Voter")
+        }
+        
+
+
+        }
+
+
         }
     }
     }
@@ -184,6 +208,22 @@
 }
 
 #favoritelots > span {
+    margin-right: 10px;
+    padding: 5px 10px;
+    background-color: #0065a4;
+    color: white;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+
+
+#badges {
+    display: flex;
+    flex-direction: row;
+}
+
+#badges > span {
     margin-right: 10px;
     padding: 5px 10px;
     background-color: #0065a4;
